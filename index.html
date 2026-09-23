@@ -12,9 +12,38 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Unbounded:wght@700;900&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="./dist/output.css" />
+  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
 </head>
 
 <body class="bg-base font-body text-white antialiased">
+
+  <!-- ========== LAYAR PEMBUKA ==========
+       Muncul tiap halaman dimuat, lalu terangkat ke atas -->
+  <div id="loader">
+    <!-- Pemandangan gunung: jalur tergambar sesuai progres,
+         titik pendaki naik, bendera muncul di puncak -->
+    <div class="loader-scene" aria-hidden="true">
+      <svg viewBox="0 0 240 120" width="240" height="120">
+        <!-- Pegunungan di belakang -->
+        <path class="loader-range" d="M0 120 L40 78 L70 96 L100 70 L110 120 Z" />
+        <path class="loader-range" d="M160 120 L200 64 L240 100 L240 120 Z" />
+        <!-- Gunung utama + salju di puncak -->
+        <path class="loader-peak" d="M0 120 L130 20 L240 120 Z" />
+        <path class="loader-snow" d="M130 20 L114.6 40 L122 35 L128 41 L136 33 L141 30 Z" />
+        <!-- Jalur pendakian: garis putus-putus + garis gold yang tergambar -->
+        <path class="loader-trail" d="M70 118 L150 100 L95 84 L150 66 L115 50 L142 36 L130 20" />
+        <path class="loader-trail-done" pathLength="100" d="M70 118 L150 100 L95 84 L150 66 L115 50 L142 36 L130 20" />
+        <!-- Bendera di puncak -->
+        <g class="loader-flag">
+          <path d="M130 20 V4" />
+          <path d="M130 4 L142 8 L130 12 Z" />
+        </g>
+      </svg>
+      <span class="loader-climber"></span>
+    </div>
+    <img src="./assets/navigation/logo-wordmark.png" alt="7summit" class="h-6" />
+    <p class="loader-count"><span id="loader-count">0</span> mdpl</p>
+  </div>
 
   <!-- Kumpulan ikon. Ditulis sekali di sini, dipakai berkali-kali
        lewat <use href="#nama-ikon"> -->
@@ -35,13 +64,13 @@
 
   <!-- ========== NAVBAR ==========
        Tetap di atas menu, tombolnya dipakai untuk buka sekaligus tutup -->
-  <header class="fixed inset-x-0 top-0 z-50 h-24 bg-gradient-to-b from-black/45 to-transparent">
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 h-24">
     <nav class="mx-auto flex h-full max-w-[1440px] items-center justify-between px-6 md:px-36" aria-label="Navigasi utama">
       <a href="#home" aria-label="7Summit, ke beranda">
-        <img src="./assets/logo-icon.png" alt="" class="h-12 w-12 md:h-16 md:w-16" />
+        <img src="./assets/navigation/logo-icon.png" alt="" class="h-12 w-12 md:h-16 md:w-16" />
       </a>
 
-      <img src="./assets/logo-wordmark.png" alt="7summit" class="absolute left-1/2 h-6 -translate-x-1/2 md:h-8" />
+      <img src="./assets/navigation/logo-wordmark.png" alt="7summit" class="absolute left-1/2 h-6 -translate-x-1/2 md:h-8" />
 
       <!-- Satu tombol, dua ikon bertumpuk: hamburger <-> X -->
       <button id="menu-toggle" class="relative h-11 w-11 cursor-pointer" aria-label="Buka menu" aria-expanded="false" aria-controls="menu">
@@ -68,7 +97,7 @@
 
         <!-- Kolom kanan: foto + kontak -->
         <div class="menu-aside w-full max-w-[344px] space-y-8">
-          <img src="./assets/menu-preview.jpg" alt="Carstensz Pyramid" class="h-60 w-full rounded-3xl object-cover" onerror="this.remove()" />
+          <img src="./assets/navigation/menu-preview.jpg" alt="Carstensz Pyramid" class="h-60 w-full rounded-3xl object-cover" onerror="this.remove()" />
 
           <div>
             <p class="label-small">Kontak</p>
@@ -95,31 +124,27 @@
          Tiga lapisan bertumpuk: foto langit, teks judul, foto gunung.
          Gunung ditulis paling akhir, jadi dia menutup bagian bawah judul. -->
     <section id="home" class="relative h-screen overflow-hidden">
-      <img src="./assets/hero-sky.jpg" alt="" class="absolute inset-0 h-full w-full object-cover" />
+      <img src="./assets/hero-sky.jpg" alt="" class="hero-sky absolute inset-0 h-full w-full object-cover" />
 
-      <div class="absolute inset-x-0 top-[26%] px-6 md:px-36">
+      <div class="intro absolute inset-x-0 top-[26%] px-6 md:px-36" style="--i:1; --y:-40px">
         <p class="text-2xl font-light text-white/90 md:text-5xl">Seven summit of</p>
         <h1 class="font-display text-[clamp(3rem,11vw,8rem)] font-black leading-none">INDONESIA</h1>
       </div>
 
-      <img src="./assets/hero-mountain.png" alt="Gunung Bromo" class="absolute inset-0 h-full w-full object-cover" />
+      <img src="./assets/hero-mountain.png" alt="Gunung Bromo" class="hero-mountain absolute inset-0 h-full w-full object-cover" />
 
       <!-- Gradasi hitam supaya teks di bawah tetap terbaca -->
       <div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-b from-transparent to-base"></div>
 
-      <div class="absolute inset-x-0 bottom-16 flex flex-col gap-6 px-6 sm:flex-row sm:items-center sm:justify-between md:px-36">
+      <div class="intro absolute inset-x-0 bottom-16 flex flex-col gap-6 px-6 sm:flex-row sm:items-center sm:justify-between md:px-36" style="--i:3; --x:-40px; --y:0">
         <p class="max-w-md text-sm text-white/70 md:text-base">
           Jelajahi tujuh puncak tertinggi di tujuh pulau besar Indonesia, dari Papua sampai Kalimantan.
         </p>
 
-        <a href="#about" class="scroll-btn">
-          Scroll me
-          <svg><use href="#i-down" /></svg>
-        </a>
+        <a href="#about" class="scroll-btn">Scroll me</a>
       </div>
     </section>
 
-    <!-- Section contoh, ganti dengan section asli kamu -->
     <!-- ========== ABOUT US ==========
          Dua kolom: foto di kiri, cerita + statistik di kanan.
          Di layar kecil otomatis jadi satu kolom. -->
@@ -144,9 +169,9 @@
           </p>
 
           <div class="grid gap-6 sm:grid-cols-3">
-            <div class="stat"><b>7</b><p>Puncak Tertinggi</p><span>Di 7 pulau besar Indonesia</span></div>
-            <div class="stat"><b>50+</b><p>Ekspedisi Sukses</p><span>Pendakian &amp; trekking terpandu</span></div>
-            <div class="stat"><b>10K+</b><p>Komunitas</p><span>Pendaki berbagi cerita</span></div>
+            <div class="stat"><b data-count="7">7</b><p>Puncak Tertinggi</p><span>Di 7 pulau besar Indonesia</span></div>
+            <div class="stat"><b data-count="50" data-suffix="+">50+</b><p>Ekspedisi Sukses</p><span>Pendakian &amp; trekking terpandu</span></div>
+            <div class="stat"><b data-count="10000" data-suffix="+" data-final="10K+">10K+</b><p>Komunitas</p><span>Pendaki berbagi cerita</span></div>
           </div>
 
           <a href="#expeditions" class="btn-outline">
@@ -156,21 +181,22 @@
         </div>
       </div>
     </section>
+
     <!-- ========== EXPEDITIONS ==========
          Section ini tingginya 320vh supaya ada "jatah scroll".
          Isinya sticky, jadi menempel di layar sementara kartunya
          digeser ke samping oleh expeditions.js. -->
     <section id="expeditions" class="relative h-[320vh]">
       <div class="sticky top-0 h-screen overflow-hidden">
-        <img src="./assets/expeditions-bg.jpg" alt="" class="absolute inset-0 h-full w-full object-cover" />
+        <img src="./assets/expeditions-bg.jpg" alt="" class="blend absolute inset-0 h-full w-full object-cover" />
         <div class="absolute inset-0 bg-linear-to-r from-base/90 via-base/50 to-base/10"></div>
 
         <div class="relative flex h-full flex-col justify-center gap-10 px-6 md:px-36 lg:flex-row lg:items-center lg:gap-16">
           <!-- Kiri: judul -->
-          <div class="max-w-md space-y-6 lg:w-2/5 lg:shrink-0">
+          <div class="max-w-xl space-y-6 lg:w-[44%] lg:shrink-0">
             <p class="label-small">03 — Expeditions</p>
             <h2 class="section-title">See the<br />Mountains</h2>
-            <p class="text-white/80 md:text-lg">
+            <p class="max-w-md text-white/80 md:text-lg">
               Temukan keindahan puncak-puncak tertinggi Indonesia, di mana setiap jalur
               membawa pemandangan menakjubkan dan petualangan yang tak terlupakan.
             </p>
@@ -221,12 +247,13 @@
         </div>
       </div>
     </section>
+
     <!-- ========== 7 SUMMITS ==========
          Slider. Isi teks, foto, dan jumlah slide diatur di src/summits.js.
          Yang di HTML cuma "wadah" kosong yang diisi lewat id. -->
     <section id="summits" class="relative h-screen overflow-hidden">
       <!-- Foto latar semua slide ditumpuk di sini, lalu di-fade oleh JS -->
-      <div id="summit-bg" class="absolute inset-0 bg-base"></div>
+      <div id="summit-bg" class="blend absolute inset-0 bg-base"></div>
       <div class="absolute inset-0 bg-linear-to-r from-base/85 via-base/40 to-base/70"></div>
 
       <div class="relative flex h-full flex-col justify-center gap-10 px-6 md:px-36 lg:flex-row lg:items-center lg:justify-between">
@@ -254,9 +281,11 @@
         </div>
       </div>
     </section>
+
     <section id="contact" class="section-demo bg-base"><h2>Ready to Reach the Top?</h2></section>
   </main>
 
+  <script src="./src/site.js"></script>
   <script src="./src/menu.js"></script>
   <script src="./src/expeditions.js"></script>
   <script src="./src/summits.js"></script>

@@ -19,7 +19,12 @@
    2. DASAR
    ============================================================ */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* cadangan kalau Lenis gagal dimuat */
+}
+
+/* Saat Lenis aktif, scroll diurus JS, bukan browser */
+html.pakai-lenis {
+  scroll-behavior: auto;
 }
 
 body.menu-open {
@@ -89,41 +94,40 @@ body.menu-open {
   color: var(--color-gold);
 }
 
-/* Tombol "Scroll me" di hero */
+/* Tombol "Scroll me" di hero.
+   Melayang dengan bayangan, lalu naik turun pelan. Tanpa efek hover. */
 .scroll-btn {
   display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
   align-self: flex-start;
   border-radius: 9999px;
-  background: rgb(255 255 255 / 0.1);
-  padding: 0.75rem 1.75rem;
-  font-size: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  color: white;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  backdrop-filter: blur(8px);
-  transition:
-    background 200ms ease,
-    color 200ms ease;
-}
-.scroll-btn:hover {
-  background: var(--color-gold);
-  color: var(--color-base);
-}
-.scroll-btn svg {
-  width: 1rem;
-  height: 1rem;
-  transition: transform 200ms ease;
-}
-.scroll-btn:hover svg {
-  transform: translateY(0.25rem);
+
+  /* dua lapis warna seperti di Figma: gold tipis + putih tipis */
+  background-color: rgb(197 168 125 / 0.2);
+  background-image: linear-gradient(rgb(255 255 255 / 0.12), rgb(255 255 255 / 0.06));
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.45);
+
+  animation: melayang 3s ease-in-out infinite;
 }
 
-/* Judul section, contoh "OUR STORY" */
+@keyframes melayang {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Judul section, contoh "OUR STORY".
+   4vw (bukan 6vw) supaya kata panjang seperti MOUNTAINS
+   tetap muat di kolomnya saat layar menyempit. */
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.25rem, 4vw, 4rem);
   font-weight: 900;
   line-height: 1.05;
   text-transform: uppercase;
@@ -152,6 +156,7 @@ body.menu-open {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   font-weight: 700;
+  font-variant-numeric: tabular-nums; /* lebar digit sama, angka tidak goyang saat menghitung */
 }
 .stat p {
   margin-top: 0.5rem;
@@ -321,19 +326,19 @@ body.menu-open {
 /* Kartu detail puncak */
 .summit-card {
   display: flex;
-  max-width: 26rem;
+  max-width: 30rem; /* 480px, sama dengan Figma */
   flex-direction: column;
   gap: 1.25rem;
-  border: 1px solid rgb(255 255 255 / 0.15);
+  border: 0.5px solid rgb(255 255 255 / 0.3);
   border-radius: 1.5rem;
-  background: rgb(11 11 12 / 0.7);
+  background: rgb(0 0 0 / 0);
   padding: 2.5rem;
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(3px);
 }
 .summit-card h3 {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.1;
   text-transform: uppercase;
 }
@@ -373,13 +378,16 @@ body.menu-open {
   height: 3.5rem;
   place-items: center;
   border-radius: 9999px;
-  background: rgb(255 255 255 / 0.85);
-  color: var(--color-base);
+  background: rgb(255 255 255 / 0);
+  backdrop-filter: blur(10px);
+  border: 0.8px solid rgb(255 255 255 / 0.3);
+  color: white;
   cursor: pointer;
-  transition: background 200ms ease;
+  transition: background 200ms ease, color 200ms ease;
 }
 .arrow-btn:hover {
-  background: white;
+  background: var(--color-gold);
+  color: black;
 }
 .arrow-btn svg {
   width: 1.25rem;
@@ -388,6 +396,16 @@ body.menu-open {
 /* Panah kiri = ikon panah kanan yang diputar */
 #summit-prev svg {
   transform: rotate(180deg);
+}
+
+/* ---- Penyambung antar section ----
+   Foto latar dipudarkan di tepi atas & bawah sampai jadi warna base.
+   Karena body juga bg-base, section yang bersebelahan jadi menyatu
+   tanpa garis potong. Tebal pudarnya bisa diatur lewat --fade. */
+.blend {
+  --fade: 18%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
 }
 
 /* Section contoh, hapus kalau sudah diganti section asli */
@@ -488,7 +506,223 @@ body.menu-open {
   }
 }
 
-/* Kalau pengguna minta animasi dikurangi: semua efek dimatikan */
+/* ============================================================
+   6. LAYAR PEMBUKA — muncul tiap halaman dimuat/refresh
+   ============================================================ */
+#loader {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background: var(--color-base);
+  transition:
+    transform 900ms cubic-bezier(0.76, 0, 0.24, 1),
+    opacity 300ms ease 700ms,
+    --n 250ms ease;
+}
+
+/* Setelah selesai, layar pembuka terangkat ke atas */
+body.is-loaded #loader {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+/* Progres 0–100 diisi dari JS. Didaftarkan lewat @property
+   supaya perubahannya bisa di-transition dengan halus */
+@property --n {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+/* Ukuran panggung = ukuran viewBox SVG (240×120),
+   jadi koordinat jalur bisa dipakai langsung untuk titik pendaki */
+.loader-scene {
+  position: relative;
+  width: 240px;
+  height: 120px;
+}
+.loader-scene svg {
+  display: block;
+  overflow: visible;
+}
+.loader-range {
+  fill: rgb(255 255 255 / 0.05);
+}
+.loader-peak {
+  fill: rgb(255 255 255 / 0.1);
+  stroke: rgb(255 255 255 / 0.25);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+.loader-snow {
+  fill: rgb(255 255 255 / 0.85);
+}
+.loader-trail,
+.loader-trail-done {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.loader-trail {
+  stroke: rgb(255 255 255 / 0.25);
+  stroke-dasharray: 2 4;
+}
+/* Garis gold tergambar sesuai progres */
+.loader-trail-done {
+  stroke: var(--color-gold);
+  stroke-dasharray: 100;
+  stroke-dashoffset: calc(100 - var(--n));
+}
+
+/* Titik pendaki berjalan mengikuti jalur yang sama */
+.loader-climber {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: 0 0 0 0 var(--color-gold);
+  offset-path: path("M70 118 L150 100 L95 84 L150 66 L115 50 L142 36 L130 20");
+  offset-rotate: 0deg;
+  offset-distance: calc(var(--n) * 1%);
+  animation: pendaki-denyut 1.2s ease-out infinite;
+}
+@keyframes pendaki-denyut {
+  to {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+
+/* Bendera berkibar muncul saat sampai puncak */
+.loader-flag path:first-child {
+  stroke: #fff;
+  stroke-width: 1;
+}
+.loader-flag path:last-child {
+  fill: var(--color-gold);
+}
+.loader-flag {
+  transform-box: fill-box;
+  transform-origin: bottom left;
+  transform: scale(0);
+  transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#loader.is-summit .loader-flag {
+  transform: scale(1);
+}
+#loader.is-summit .loader-climber {
+  animation: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.loader-count {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   7. NAVBAR — di atas transparan, saat di-scroll mengecil
+   jadi pil kaca yang melayang (seperti desain Figma)
+   ============================================================ */
+#navbar {
+  pointer-events: none; /* area kosong di kiri-kanan pil tidak menghalangi klik */
+  padding-top: 0;
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0.45), transparent);
+  transition:
+    padding 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 400ms ease;
+}
+
+#navbar nav {
+  pointer-events: auto;
+  transition:
+    max-width 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    padding 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 400ms ease,
+    border-color 400ms ease,
+    border-radius 400ms ease;
+  border: 1px solid transparent;
+}
+
+/* Setelah di-scroll: latar gradasi hilang, nav menyusut jadi pil kaca */
+#navbar.is-scrolled {
+  padding-top: 1rem;
+  background: none;
+}
+
+#navbar.is-scrolled nav {
+  max-width: 56rem;
+  height: 4rem;
+  padding-inline: 2rem;
+  border-radius: 9999px;
+  border-color: rgb(255 255 255 / 0.18);
+  background: rgb(255 255 255 / 0.00);
+  backdrop-filter: blur(5px);
+}
+
+/* Logo ikut mengecil biar pas di dalam pil */
+#navbar.is-scrolled nav > a img {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+/* ============================================================
+   8. ANIMASI MASUK HERO
+   Urutan: judul turun dari atas -> gunung naik dari bawah ->
+   teks bawah masuk dari kiri
+   ============================================================ */
+
+/* Teks hero. Arah masuknya diatur lewat --x / --y di HTML */
+.intro {
+  opacity: 0;
+  transform: translate(var(--x, 0), var(--y, 24px));
+}
+body.is-loaded .intro {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 900ms ease,
+    transform 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(300ms + var(--i, 1) * 300ms);
+}
+
+/* Gunung naik perlahan dari bawah */
+.hero-mountain {
+  opacity: 0;
+  transform: translateY(14%);
+}
+body.is-loaded .hero-mountain {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 1000ms ease 900ms,
+    transform 1800ms cubic-bezier(0.16, 1, 0.3, 1) 900ms;
+}
+
+/* Langit perlahan mengecil ke ukuran normal, bikin kesan dalam */
+.hero-sky {
+  transform: scale(1.12);
+}
+body.is-loaded .hero-sky {
+  transform: none;
+  transition: transform 2200ms cubic-bezier(0.16, 1, 0.3, 1) 500ms;
+}
+
+/* ============================================================
+   9. HEMAT ANIMASI — kalau pengguna menyalakan "reduce motion"
+   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -509,18 +743,22 @@ body.menu-open {
     transform: none;
     transition: none;
   }
-  .ripple-ring {
+  .ripple-ring,
+  #loader {
     display: none;
   }
-  .summit-card.is-new {
+  .summit-card.is-new,
+  .scroll-btn {
     animation: none;
   }
-}
-
-/* Kalau animasi dikurangi: kartu digeser manual, bukan ikut scroll */
-@media (prefers-reduced-motion: reduce) {
   #cards {
     overflow-x: auto;
     transform: none !important;
+  }
+  .intro,
+  .hero-mountain,
+  .hero-sky {
+    opacity: 1;
+    transform: none;
   }
 }

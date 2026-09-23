@@ -39,6 +39,10 @@ function openMenu() {
 
 function setOpen(open) {
   menu.dataset.open = open;
+
+  // Hentikan smooth scroll selama menu terbuka
+  if (typeof lenis !== "undefined" && lenis) open ? lenis.stop() : lenis.start();
+
   toggle.setAttribute("aria-expanded", open);
   toggle.setAttribute("aria-label", open ? "Tutup menu" : "Buka menu");
   document.body.classList.toggle("menu-open", open);
@@ -50,7 +54,9 @@ toggle.onclick = () => (isOpen() ? setOpen(false) : openMenu());
 links.forEach((link) => (link.onclick = () => setOpen(false)));
 
 // Esc untuk menutup
-document.onkeydown = (e) => e.key === "Escape" && setOpen(false);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") setOpen(false);
+});
 
 // Tandai menu yang sedang dilihat saat halaman di-scroll
 const spy = new IntersectionObserver(
