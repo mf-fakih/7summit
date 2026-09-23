@@ -108,7 +108,7 @@
       <div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-b from-transparent to-base"></div>
 
       <div class="absolute inset-x-0 bottom-16 flex flex-col gap-6 px-6 sm:flex-row sm:items-center sm:justify-between md:px-36">
-        <p class="max-w-md text-sm text-white/70 md:text-white">
+        <p class="max-w-md text-sm text-white/70 md:text-base">
           Jelajahi tujuh puncak tertinggi di tujuh pulau besar Indonesia, dari Papua sampai Kalimantan.
         </p>
 
@@ -156,12 +156,110 @@
         </div>
       </div>
     </section>
-    <section id="expeditions" class="section-demo bg-base"><h2>See the Mountains</h2></section>
-    <section id="summits" class="section-demo bg-surface"><h2>Seven Summit</h2></section>
+    <!-- ========== EXPEDITIONS ==========
+         Section ini tingginya 320vh supaya ada "jatah scroll".
+         Isinya sticky, jadi menempel di layar sementara kartunya
+         digeser ke samping oleh expeditions.js. -->
+    <section id="expeditions" class="relative h-[320vh]">
+      <div class="sticky top-0 h-screen overflow-hidden">
+        <img src="./assets/expeditions-bg.jpg" alt="" class="absolute inset-0 h-full w-full object-cover" />
+        <div class="absolute inset-0 bg-linear-to-r from-base/90 via-base/50 to-base/10"></div>
+
+        <div class="relative flex h-full flex-col justify-center gap-10 px-6 md:px-36 lg:flex-row lg:items-center lg:gap-16">
+          <!-- Kiri: judul -->
+          <div class="max-w-md space-y-6 lg:w-2/5 lg:shrink-0">
+            <p class="label-small">03 — Expeditions</p>
+            <h2 class="section-title">See the<br />Mountains</h2>
+            <p class="text-white/80 md:text-lg">
+              Temukan keindahan puncak-puncak tertinggi Indonesia, di mana setiap jalur
+              membawa pemandangan menakjubkan dan petualangan yang tak terlupakan.
+            </p>
+            <a href="#summits" class="btn-primary">
+              Lihat Semua Puncak
+              <svg><use href="#i-right" /></svg>
+            </a>
+          </div>
+
+          <!-- Kanan: kartu yang bergeser -->
+          <div class="min-w-0 flex-1">
+            <div class="overflow-hidden">
+              <div id="cards" class="flex gap-6">
+                <article class="card">
+                  <img src="./assets/mountains/carstensz.jpg" alt="Gunung Carstensz Pyramid" />
+                  <span>Papua</span><h3>Carstensz Pyramid</h3><p>4.884 mdpl</p>
+                </article>
+                <article class="card">
+                  <img src="./assets/mountains/kerinci.jpg" alt="Gunung Kerinci" />
+                  <span>Sumatra Barat &amp; Jambi</span><h3>Kerinci</h3><p>3.805 mdpl</p>
+                </article>
+                <article class="card">
+                  <img src="./assets/mountains/rinjani.jpg" alt="Gunung Rinjani" />
+                  <span>Nusa Tenggara Barat</span><h3>Rinjani</h3><p>3.726 mdpl</p>
+                </article>
+                <article class="card">
+                  <img src="./assets/mountains/semeru.jpg" alt="Gunung Semeru" />
+                  <span>Jawa Timur</span><h3>Semeru</h3><p>3.676 mdpl</p>
+                </article>
+                <article class="card">
+                  <img src="./assets/mountains/latimojong.jpg" alt="Gunung Latimojong" />
+                  <span>Sulawesi Selatan</span><h3>Latimojong</h3><p>3.478 mdpl</p>
+                </article>
+                <article class="card">
+                  <img src="./assets/mountains/binaiya.jpg" alt="Gunung Binaiya" />
+                  <span>Maluku</span><h3>Binaiya</h3><p>3.027 mdpl</p>
+                </article>
+                <article class="card">
+                  <img src="./assets/mountains/bukit-raya.jpg" alt="Gunung Bukit Raya" />
+                  <span>Kalimantan</span><h3>Bukit Raya</h3><p>2.278 mdpl</p>
+                </article>
+              </div>
+            </div>
+
+            <!-- Garis progres -->
+            <div class="progress mt-8"><span id="cards-bar"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========== 7 SUMMITS ==========
+         Slider. Isi teks, foto, dan jumlah slide diatur di src/summits.js.
+         Yang di HTML cuma "wadah" kosong yang diisi lewat id. -->
+    <section id="summits" class="relative h-screen overflow-hidden">
+      <!-- Foto latar semua slide ditumpuk di sini, lalu di-fade oleh JS -->
+      <div id="summit-bg" class="absolute inset-0 bg-base"></div>
+      <div class="absolute inset-0 bg-linear-to-r from-base/85 via-base/40 to-base/70"></div>
+
+      <div class="relative flex h-full flex-col justify-center gap-10 px-6 md:px-36 lg:flex-row lg:items-center lg:justify-between">
+        <!-- Kiri: judul besar -->
+        <div>
+          <p class="label-small">Destinasi <span id="summit-no">01</span> / 07</p>
+          <h2 class="section-title">Summit<br /><span id="summit-ghost">Puncak Jaya</span></h2>
+        </div>
+
+        <!-- Kanan: kartu detail -->
+        <article class="summit-card">
+          <h3 id="summit-name">Carstensz Pyramid</h3>
+          <div id="summit-tags" class="flex flex-wrap gap-2"></div>
+          <p id="summit-text" class="text-white/75"></p>
+          <a href="#contact" class="btn-outline">Detail Pendakian <svg><use href="#i-right" /></svg></a>
+        </article>
+      </div>
+
+      <!-- Titik indikator + tombol panah -->
+      <div class="absolute inset-x-0 bottom-12 flex items-center justify-between px-6 md:px-36">
+        <div id="summit-dots" class="flex gap-2"></div>
+        <div class="flex gap-4">
+          <button id="summit-prev" class="arrow-btn" aria-label="Puncak sebelumnya"><svg><use href="#i-right" /></svg></button>
+          <button id="summit-next" class="arrow-btn" aria-label="Puncak berikutnya"><svg><use href="#i-right" /></svg></button>
+        </div>
+      </div>
+    </section>
     <section id="contact" class="section-demo bg-base"><h2>Ready to Reach the Top?</h2></section>
   </main>
 
   <script src="./src/menu.js"></script>
+  <script src="./src/expeditions.js"></script>
+  <script src="./src/summits.js"></script>
 </body>
 
 </html>
