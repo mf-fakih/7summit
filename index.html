@@ -1,12 +1,167 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id" class="scroll-pt-24">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7Summit | Indonesia</title>
-    <link rel="stylesheet" href="./src/output.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>7Summit Indonesia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Unbounded:wght@700;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./dist/output.css" />
 </head>
-<body>
-    
+
+<body class="bg-base font-body text-white antialiased">
+
+  <!-- Kumpulan ikon. Ditulis sekali di sini, dipakai berkali-kali
+       lewat <use href="#nama-ikon"> -->
+  <svg hidden>
+    <symbol id="i-menu" viewBox="0 0 32 32">
+      <path fill="currentColor" d="M29 20.5a1.5 1.5 0 0 1-1.5 1.5h-22a1.5 1.5 0 0 1 0-3h22a1.5 1.5 0 0 1 1.5 1.5ZM5.5 14h22a1.5 1.5 0 0 0 0-3h-22a1.5 1.5 0 0 0 0 3Z" />
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 32 32">
+      <path fill="currentColor" d="M26.06 23.94a1.5 1.5 0 0 1-2.12 2.12L16 18.13l-7.94 7.93a1.5 1.5 0 0 1-2.12-2.12L13.88 16 5.94 8.06a1.5 1.5 0 1 1 2.12-2.12L16 13.88l7.94-7.94a1.5 1.5 0 1 1 2.12 2.12L18.13 16l7.93 7.94Z" />
+    </symbol>
+    <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 12h15m0 0-6-6m6 6-6 6" />
+    </symbol>
+    <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14m0 0-6-6m6 6 6-6" />
+    </symbol>
+  </svg>
+
+  <!-- ========== NAVBAR ==========
+       Tetap di atas menu, tombolnya dipakai untuk buka sekaligus tutup -->
+  <header class="fixed inset-x-0 top-0 z-50 h-24 bg-gradient-to-b from-black/45 to-transparent">
+    <nav class="mx-auto flex h-full max-w-[1440px] items-center justify-between px-6 md:px-36" aria-label="Navigasi utama">
+      <a href="#home" aria-label="7Summit, ke beranda">
+        <img src="./assets/logo-icon.png" alt="" class="h-12 w-12 md:h-16 md:w-16" />
+      </a>
+
+      <img src="./assets/logo-wordmark.png" alt="7summit" class="absolute left-1/2 h-6 -translate-x-1/2 md:h-8" />
+
+      <!-- Satu tombol, dua ikon bertumpuk: hamburger <-> X -->
+      <button id="menu-toggle" class="relative h-11 w-11 cursor-pointer" aria-label="Buka menu" aria-expanded="false" aria-controls="menu">
+        <svg class="toggle-icon toggle-menu"><use href="#i-menu" /></svg>
+        <svg class="toggle-icon toggle-close"><use href="#i-close" /></svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ========== MENU FULLSCREEN ==========
+       Latar blur, muncul dengan efek gelombang dari posisi tombol -->
+  <div id="menu" class="menu-panel fixed inset-0 z-40 bg-base/55 backdrop-blur-2xl" data-open="false" role="dialog"
+    aria-modal="true" aria-label="Menu navigasi">
+    <div class="mx-auto flex h-full max-w-[1440px] flex-col px-6 pt-24 md:px-36">
+
+      <div class="flex flex-1 flex-col justify-center gap-12 overflow-y-auto py-8 lg:flex-row lg:items-center lg:justify-between lg:gap-24">
+        <ul>
+          <li style="--i:1"><a class="menu-link" href="#home" aria-current="page"><span>01</span>Home<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:2"><a class="menu-link" href="#about"><span>02</span>About Us<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:3"><a class="menu-link" href="#expeditions"><span>03</span>Expeditions<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:4"><a class="menu-link" href="#summits"><span>04</span>7 Summits<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:5"><a class="menu-link" href="#contact"><span>05</span>Contact<svg><use href="#i-right" /></svg></a></li>
+        </ul>
+
+        <!-- Kolom kanan: foto + kontak -->
+        <div class="menu-aside w-full max-w-[344px] space-y-8">
+          <img src="./assets/menu-preview.jpg" alt="Carstensz Pyramid" class="h-60 w-full rounded-3xl object-cover" onerror="this.remove()" />
+
+          <div>
+            <p class="label-small">Kontak</p>
+            <p class="text-white/80">hello@7summit.id</p>
+            <p class="text-white/80">+62 812 0000 7777</p>
+          </div>
+
+          <div>
+            <p class="label-small">Sosial Media</p>
+            <p class="text-white/80">Instagram · YouTube · TikTok</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-aside flex flex-col gap-2 border-t border-white/15 py-6 text-sm text-muted sm:flex-row sm:justify-between">
+        <p>© 2026 7Summit Indonesia</p>
+        <p>Seven Summits of Indonesia</p>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ========== HERO ==========
+         Tiga lapisan bertumpuk: foto langit, teks judul, foto gunung.
+         Gunung ditulis paling akhir, jadi dia menutup bagian bawah judul. -->
+    <section id="home" class="relative h-screen overflow-hidden">
+      <img src="./assets/hero-sky.jpg" alt="" class="absolute inset-0 h-full w-full object-cover" />
+
+      <div class="absolute inset-x-0 top-[26%] px-6 md:px-36">
+        <p class="text-2xl font-light text-white/90 md:text-5xl">Seven summit of</p>
+        <h1 class="font-display text-[clamp(3rem,11vw,8rem)] font-black leading-none">INDONESIA</h1>
+      </div>
+
+      <img src="./assets/hero-mountain.png" alt="Gunung Bromo" class="absolute inset-0 h-full w-full object-cover" />
+
+      <!-- Gradasi hitam supaya teks di bawah tetap terbaca -->
+      <div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-b from-transparent to-base"></div>
+
+      <div class="absolute inset-x-0 bottom-16 flex flex-col gap-6 px-6 sm:flex-row sm:items-center sm:justify-between md:px-36">
+        <p class="max-w-md text-sm text-white/70 md:text-white">
+          Jelajahi tujuh puncak tertinggi di tujuh pulau besar Indonesia, dari Papua sampai Kalimantan.
+        </p>
+
+        <a href="#about" class="scroll-btn">
+          Scroll me
+          <svg><use href="#i-down" /></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section contoh, ganti dengan section asli kamu -->
+    <!-- ========== ABOUT US ==========
+         Dua kolom: foto di kiri, cerita + statistik di kanan.
+         Di layar kecil otomatis jadi satu kolom. -->
+    <section id="about" class="bg-base px-6 py-28 md:px-36">
+      <p class="label-small">02 — About Us</p>
+      <h2 class="section-title">Our Story</h2>
+
+      <div class="mt-14 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <!-- Foto + label -->
+        <figure class="relative">
+          <img src="./assets/about.jpg" alt="Pegunungan Indonesia di atas awan"
+               class="aspect-4/3 w-full rounded-3xl object-cover" />
+          <figcaption class="chip absolute bottom-6 left-6">Mountains in Indonesia</figcaption>
+        </figure>
+
+        <!-- Cerita, statistik, tombol -->
+        <div class="space-y-10">
+          <p class="max-w-prose text-lg leading-relaxed text-white/80">
+            7Summit Indonesia hadir untuk mengajak para pendaki mengenal dan menjelajahi
+            keindahan pegunungan Indonesia. Kami menghadirkan informasi dan pengalaman
+            pendakian yang aman, berkesan, serta mengutamakan kebersamaan dan kelestarian alam.
+          </p>
+
+          <div class="grid gap-6 sm:grid-cols-3">
+            <div class="stat"><b>7</b><p>Puncak Tertinggi</p><span>Di 7 pulau besar Indonesia</span></div>
+            <div class="stat"><b>50+</b><p>Ekspedisi Sukses</p><span>Pendakian &amp; trekking terpandu</span></div>
+            <div class="stat"><b>10K+</b><p>Komunitas</p><span>Pendaki berbagi cerita</span></div>
+          </div>
+
+          <a href="#expeditions" class="btn-outline">
+            Read More
+            <svg><use href="#i-right" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section id="expeditions" class="section-demo bg-base"><h2>See the Mountains</h2></section>
+    <section id="summits" class="section-demo bg-surface"><h2>Seven Summit</h2></section>
+    <section id="contact" class="section-demo bg-base"><h2>Ready to Reach the Top?</h2></section>
+  </main>
+
+  <script src="./src/menu.js"></script>
 </body>
+
 </html>
