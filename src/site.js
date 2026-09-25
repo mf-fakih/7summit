@@ -16,7 +16,7 @@ scrollTo(0, 0);
 let lenis = null;
 
 if (window.Lenis && !hematAnimasi) {
-  lenis = new Lenis({ duration: 1.2 }); // makin besar = makin "meluncur"
+  lenis = new Lenis({ duration: 1.1 }); // makin besar = makin "meluncur"
   document.documentElement.classList.add("pakai-lenis");
 
   (function jalan(waktu) {
