@@ -41,25 +41,30 @@ if (window.Lenis && !hematAnimasi) {
 // ---------- 1. LAYAR PEMBUKA ----------
 const loader = document.getElementById("loader");
 const angka = document.getElementById("loader-count");
-let persen = 0;
-
 lenis?.stop(); // kunci scroll selama layar pembuka tampil
 
 // Pengaman: apa pun yang terjadi, loader wajib hilang setelah 5 detik
 setTimeout(selesai, 5000);
 
-const hitung = setInterval(() => {
-  persen = Math.min(persen + Math.random() * 10, 100);
-  // Progres ditampilkan sebagai ketinggian, puncaknya Everest 8.848 mdpl
+// Progres digerakkan per frame (requestAnimationFrame) selama 2,2 detik,
+// jadi titik pendaki naik mulus tanpa patah-patah.
+const durasi = 2200;
+let mulai;
+
+function langkah(waktu) {
+  mulai ??= waktu;
+  const t = Math.min((waktu - mulai) / durasi, 1);
+  const persen = (1 - (1 - t) ** 3) * 100; // cepat di awal, melambat dekat puncak
+
+  // Progres ditampilkan sebagai ketinggian, puncaknya Carstensz 4.884 mdpl
   angka.textContent = Math.round((persen / 100) * 4884).toLocaleString("id-ID");
   loader.style.setProperty("--n", persen);
 
-  if (persen === 100) {
-    clearInterval(hitung);
-    setTimeout(() => loader.classList.add("is-summit"), 250); // bendera berkibar
-    setTimeout(selesai, 1000);
-  }
-}, 90);
+  if (t < 1) return requestAnimationFrame(langkah);
+  setTimeout(() => loader.classList.add("is-summit"), 150); // bendera berkibar
+  setTimeout(selesai, 900);
+}
+requestAnimationFrame(langkah);
 
 let sudahSelesai = false;
 
@@ -67,7 +72,6 @@ function selesai() {
   if (sudahSelesai) return; // jangan jalan dua kali
   sudahSelesai = true;
 
-  clearInterval(hitung);
   document.body.classList.add("is-loaded"); // loader terangkat + hero muncul
   lenis?.start();
   setTimeout(() => loader?.remove(), 1200);
