@@ -333,7 +333,7 @@ body.menu-open {
   border-radius: 1.5rem;
   background: rgb(0 0 0 / 0);
   padding: 2.5rem;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(5px);
 }
 .summit-card h3 {
   font-family: var(--font-display);
@@ -401,53 +401,138 @@ body.menu-open {
 /* ---- Penyambung antar section ----
    Foto latar dipudarkan di tepi atas & bawah sampai jadi warna base.
    Karena body juga bg-base, section yang bersebelahan jadi menyatu
-   tanpa garis potong. Tebal pudarnya bisa diatur lewat --fade. */
+   tanpa garis potong. Tebal pudarnya bisa diatur lewat --fade.
+
+   Pudarnya dibuat melengkung (pelan - cepat - pelan), bukan lurus,
+   supaya mata tidak menangkap "garis" di awal & akhir gradasi.
+   --ramp dipakai dua kali: dari atas ke bawah, dan dari bawah ke atas. */
 .blend {
-  --fade: 18%;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
+  --fade: 30%;
+  --ramp: transparent,
+    rgb(0 0 0 / 0.1) calc(var(--fade) * 0.25),
+    rgb(0 0 0 / 0.5) calc(var(--fade) * 0.5),
+    rgb(0 0 0 / 0.9) calc(var(--fade) * 0.75),
+    #000 var(--fade);
+  -webkit-mask-image: linear-gradient(to bottom, var(--ramp)), linear-gradient(to top, var(--ramp));
+  mask-image: linear-gradient(to bottom, var(--ramp)), linear-gradient(to top, var(--ramp));
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect; /* ambil bagian yang terlihat di kedua gradasi */
 }
 
-/* Section contoh, hapus kalau sudah diganti section asli */
-.section-demo {
-  display: grid;
-  min-height: 100vh;
-  place-items: center;
-}
-.section-demo h2 {
+/* ---- Contact ---- */
+
+/* Judul raksasa "LET'S GET IN TOUCH" */
+.contact-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 6vw, 4rem);
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
   font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
 }
 
+/* Link sosial media: ikon + nama */
+.social {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 200ms ease;
+}
+.social:hover {
+  color: var(--color-gold);
+}
+
+/* Kolom isian dengan garis bawah saja */
+.field {
+  width: 100%;
+  border-bottom: 1px solid rgb(255 255 255 / 0.6);
+  background: none;
+  padding: 0.75rem 0;
+  resize: none;
+  field-sizing: content; /* kolom pesan ikut memanjang saat diketik */
+  transition: border-color 200ms ease;
+}
+.field::placeholder {
+  color: rgb(255 255 255 / 0.8);
+}
+.field:focus {
+  border-color: var(--color-gold);
+  outline: none;
+}
+
+/* Tombol kirim: abu-abu, jadi gold saat disentuh */
+.btn-send {
+  border-radius: 9999px;
+  background: #929292;
+  padding: 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease;
+}
+.btn-send:hover {
+  background: var(--color-gold);
+  color: var(--color-base);
+}
+
+/* ---- Footer ---- */
+
+/* Tombol "Back to top": teks + panah ke atas */
+.back-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.back-top svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  transform: rotate(-90deg); /* panah kanan diputar jadi panah atas */
+  transition: translate 200ms ease;
+}
+.back-top:hover svg {
+  translate: 0 -0.25rem;
+}
+
 /* ============================================================
-   4. TOMBOL MENU — hamburger berputar keluar, X berputar masuk.
+   4. TOMBOL MENU — dua garis. Saat diklik, garis 1 miring duluan,
+   lalu garis 2 menyusul, jadi X. Saat ditutup urutannya dibalik.
    Pemicunya cuma aria-expanded di tombol.
    ============================================================ */
-.toggle-icon {
+.bar {
   position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 2rem;
-  height: 2rem;
-  transition:
-    opacity 250ms ease,
-    transform 350ms ease;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 3px;
+  margin: -1.5px 0 0 -11px; /* titik tengah garis = tengah tombol */
+  border-radius: 9999px;
+  background: currentColor;
+  transition: transform 300ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.toggle-close {
-  opacity: 0;
-  transform: rotate(-90deg) scale(0.6);
+/* Posisi awal: garis atas & bawah */
+.bar:first-child {
+  transform: translateY(-4.5px);
+  transition-delay: 120ms; /* saat menutup, garis 1 kembali belakangan */
+}
+.bar:last-child {
+  transform: translateY(4.5px);
 }
 
-[aria-expanded="true"] .toggle-menu {
-  opacity: 0;
-  transform: rotate(90deg) scale(0.6);
+/* Terbuka: garis 1 miring duluan, garis 2 menyusul */
+[aria-expanded="true"] .bar:first-child {
+  transform: rotate(45deg);
+  transition-delay: 0ms;
 }
-[aria-expanded="true"] .toggle-close {
-  opacity: 1;
-  transform: none;
+[aria-expanded="true"] .bar:last-child {
+  transform: rotate(-45deg);
+  transition-delay: 120ms;
 }
 
 /* ============================================================
@@ -668,7 +753,7 @@ body.is-loaded #loader {
   padding-inline: 2rem;
   border-radius: 9999px;
   border-color: rgb(255 255 255 / 0.18);
-  background: rgb(255 255 255 / 0.00);
+  background: rgb(255 255 255 / 1.0);
   backdrop-filter: blur(5px);
 }
 
@@ -762,3 +847,4 @@ body.is-loaded .hero-sky {
     transform: none;
   }
 }
+

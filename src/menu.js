@@ -58,7 +58,9 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") setOpen(false);
 });
 
-// Tandai menu yang sedang dilihat saat halaman di-scroll
+// Tandai menu yang sedang dilihat saat halaman di-scroll.
+// Patokannya garis tipis di tengah layar, jadi section yang sangat
+// tinggi (misalnya Expeditions 320vh) tetap terdeteksi.
 const spy = new IntersectionObserver(
   (entries) =>
     entries.forEach((entry) => {
@@ -70,7 +72,7 @@ const spy = new IntersectionObserver(
         )
       );
     }),
-  { threshold: 0.5 }
+  { rootMargin: "-50% 0px -50% 0px" }
 );
 
 document.querySelectorAll("main section[id]").forEach((s) => spy.observe(s));

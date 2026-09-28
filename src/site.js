@@ -30,6 +30,9 @@ if (window.Lenis && !hematAnimasi) {
       const tujuan = document.querySelector(link.getAttribute("href"));
       if (!tujuan) return;
       e.preventDefault();
+      // Nyalakan Lenis dulu (saat menu terbuka dia sedang berhenti),
+      // baru scroll. Kalau urutannya kebalik, scroll-nya dibatalkan.
+      lenis.start();
       lenis.scrollTo(tujuan);
     });
   });
@@ -84,7 +87,7 @@ addEventListener(
 function hitungNaik(el) {
   const target = Number(el.dataset.count);
   const akhiran = el.dataset.suffix || "";
-  const durasi = 1600;
+  const durasi = 2600;
   let mulai = null;
 
   function langkah(waktu) {
@@ -115,3 +118,16 @@ if (!hematAnimasi && "IntersectionObserver" in window) {
   );
   angkaStat.forEach((el) => pengamat.observe(el));
 }
+
+// ---------- 5. FORM (KONTAK & NEWSLETTER) ----------
+// Belum ada server, jadi pesan cuma "pura-pura" terkirim:
+// halaman tidak dimuat ulang, form dikosongkan, tombol memberi tanda.
+// Teks tandanya diambil dari data-done di tombol.
+document.querySelectorAll("form").forEach((form) =>
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    form.reset();
+    const tombol = form.querySelector("button");
+    tombol.textContent = tombol.dataset.done;
+  })
+);

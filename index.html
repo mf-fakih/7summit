@@ -49,12 +49,6 @@
   <!-- Kumpulan ikon. Ditulis sekali di sini, dipakai berkali-kali
        lewat <use href="#nama-ikon"> -->
   <svg hidden>
-    <symbol id="i-menu" viewBox="0 0 32 32">
-      <path fill="currentColor" d="M29 20.5a1.5 1.5 0 0 1-1.5 1.5h-22a1.5 1.5 0 0 1 0-3h22a1.5 1.5 0 0 1 1.5 1.5ZM5.5 14h22a1.5 1.5 0 0 0 0-3h-22a1.5 1.5 0 0 0 0 3Z" />
-    </symbol>
-    <symbol id="i-close" viewBox="0 0 32 32">
-      <path fill="currentColor" d="M26.06 23.94a1.5 1.5 0 0 1-2.12 2.12L16 18.13l-7.94 7.93a1.5 1.5 0 0 1-2.12-2.12L13.88 16 5.94 8.06a1.5 1.5 0 1 1 2.12-2.12L16 13.88l7.94-7.94a1.5 1.5 0 1 1 2.12 2.12L18.13 16l7.93 7.94Z" />
-    </symbol>
     <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M4 12h15m0 0-6-6m6 6-6 6" />
     </symbol>
@@ -73,10 +67,10 @@
 
       <img src="./assets/navigation/logo-wordmark.png" alt="7summit" class="absolute left-1/2 h-6 -translate-x-1/2 md:h-8" />
 
-      <!-- Satu tombol, dua ikon bertumpuk: hamburger <-> X -->
+      <!-- Tombol menu: dua garis yang miring satu per satu jadi X -->
       <button id="menu-toggle" class="relative h-11 w-11 cursor-pointer" aria-label="Buka menu" aria-expanded="false" aria-controls="menu">
-        <svg class="toggle-icon toggle-menu"><use href="#i-menu" /></svg>
-        <svg class="toggle-icon toggle-close"><use href="#i-close" /></svg>
+        <span class="bar"></span>
+        <span class="bar"></span>
       </button>
     </nav>
   </header>
@@ -172,7 +166,7 @@
           <div class="grid gap-6 sm:grid-cols-3">
             <div class="stat"><b data-count="7">7</b><p>Puncak Tertinggi</p><span>Di 7 pulau besar Indonesia</span></div>
             <div class="stat"><b data-count="50" data-suffix="+">50+</b><p>Ekspedisi Sukses</p><span>Pendakian &amp; trekking terpandu</span></div>
-            <div class="stat"><b data-count="10000" data-suffix="+" data-final="10K+">10K+</b><p>Komunitas</p><span>Pendaki berbagi cerita</span></div>
+            <div class="stat"><b data-count="10000" data-suffix="+" data-final="10K+">10.000+</b><p>Komunitas</p><span>Pendaki berbagi cerita</span></div>
           </div>
 
           <a href="#expeditions" class="btn-outline">
@@ -283,8 +277,84 @@
       </div>
     </section>
 
-    <section id="contact" class="section-demo bg-base"><h2>Ready to Reach the Top?</h2></section>
+    <!-- ========== CONTACT ==========
+         Kiri: judul besar + sosial media. Kanan: kartu form.
+         Di layar kecil otomatis jadi satu kolom. -->
+    <section id="contact" class="relative overflow-hidden h-screen md:h-screen">
+      <img src="./assets/contact/contact-bg.jpg" alt="" class="blend absolute inset-0 h-full w-full object-cover h-screen" />
+      <div class="absolute inset-0 bg-linear-120 from-base/80 from-30% to-transparent"></div>
+
+      <div class="relative grid min-h-screen grid-cols-1 items-center gap-14 px-6 py-32 md:px-36 lg:grid-cols-2">
+        <!-- Kiri: ajakan + sosial media -->
+        <div class="space-y-8">
+          <h2 class="contact-title">Let's<br /><span class="ml-[0.2em]">get in</span><br /><span class="ml-[0.5em]">touch</span></h2>
+          <p class="max-w-md text-lg font-light md:text-xl">
+            Hubungi kami untuk pertanyaan, masukan, atau bantuan. Kami siap melayani Anda.
+          </p>
+
+          <ul class="flex flex-wrap gap-x-10 gap-y-4 text-sm">
+            <li><a href="#" class="social"><img src="./assets/contact/facebook.svg" alt="" />7summitindonesia</a></li>
+            <li><a href="#" class="social"><img src="./assets/contact/instagram.svg" alt="" />@7summitEXP</a></li>
+            <li><a href="#" class="social"><img src="./assets/contact/x.svg" alt="" />7summit</a></li>
+          </ul>
+        </div>
+
+        <!-- Kanan: form (pakai gaya kartu yang sama dengan section Summits) -->
+        <form class="summit-card gap-6 bg-white/5 lg:justify-self-end">
+          <div class="space-y-3">
+            <p class="label-small">05 — Contact</p>
+            <h3>Ready to<br />Reach the Top?</h3>
+            <p class="text-white/80">Tinggalkan pesan, tim kami akan menghubungimu untuk merencanakan pendakian.</p>
+          </div>
+
+          <input class="field" name="nama" placeholder="Nama lengkap" required />
+          <textarea class="field" name="pesan" rows="1" placeholder="Pesan" required></textarea>
+
+          <button class="btn-send" data-done="Pesan Terkirim ✓">Kirim Pesan</button>
+        </form>
+      </div>
+    </section>
   </main>
+
+  <!-- ========== FOOTER ==========
+       Foto di atas (pudar atas-bawah), newsletter, tulisan SUMMIT besar,
+       lalu baris hak cipta. -->
+  <footer class="relative -mt-40 overflow-hidden">
+    <img src="./assets/footer/footer-bg.jpg" alt="" class="blend absolute inset-0 h-full w-full object-cover brightness-75 [--fade:25%] h-screen" />
+
+    <div class="relative px-6 pt-72 pb-10 md:px-36">
+      <!-- Newsletter: kiri logo, kanan form -->
+      <div class="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-sm">
+          <p class="label-small">Newsletter</p>
+          <img src="./assets/footer/logo.svg" alt="7summit" class="-mt-4" />
+          <p class="text-sm">Jelajahi puncak-puncak Indonesia dan temukan keindahan alam Nusantara</p>
+        </div>
+
+        <form class="w-full max-w-[30rem] space-y-5">
+          <h2 class="flex justify-between gap-3 font-display text-sm font-bold whitespace-nowrap uppercase sm:text-[1.375rem]">
+            <span>Sign up</span><span>to our</span><span>newsletter</span>
+          </h2>
+          <div class="flex items-center rounded-full border border-white/60 bg-white/15 py-1.5 pr-1.5 pl-7 backdrop-blur-sm">
+            <input type="email" name="email" placeholder="Masukkan email kamu" required
+                   class="min-w-0 flex-1 bg-transparent outline-none placeholder:text-white/80" />
+            <button class="btn-primary" data-done="Terdaftar ✓">Langganan <svg><use href="#i-right" /></svg></button>
+          </div>
+        </form>
+      </div>
+
+      <img src="./assets/footer/summit-text.png" alt="Summit" class="mx-auto mt-16 w-full max-w-[1236px] md:mt-52" />
+
+      <!-- Baris paling bawah -->
+      <div class="mt-4 flex flex-col gap-6 border-t border-white/15 pt-10 text-sm text-muted md:flex-row md:items-center md:justify-between">
+        <p>© 2026 7Summit Indonesia. All rights reserved.</p>
+        <p class="space-x-3">
+          <a href="#" class="hover:text-white">Kebijakan Privasi</a><span>·</span><a href="#" class="hover:text-white">Syarat &amp; Ketentuan</a>
+        </p>
+        <a href="#home" class="back-top">Back to top <svg><use href="#i-right" /></svg></a>
+      </div>
+    </div>
+  </footer>
 
   <script src="./src/site.js"></script>
   <script src="./src/menu.js"></script>
