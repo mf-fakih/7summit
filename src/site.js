@@ -51,7 +51,7 @@ setTimeout(selesai, 5000);
 const hitung = setInterval(() => {
   persen = Math.min(persen + Math.random() * 10, 100);
   // Progres ditampilkan sebagai ketinggian, puncaknya Everest 8.848 mdpl
-  angka.textContent = Math.round((persen / 100) * 8848).toLocaleString("id-ID");
+  angka.textContent = Math.round((persen / 100) * 4884).toLocaleString("id-ID");
   loader.style.setProperty("--n", persen);
 
   if (persen === 100) {

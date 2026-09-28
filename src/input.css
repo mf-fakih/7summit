@@ -753,7 +753,7 @@ body.is-loaded #loader {
   padding-inline: 2rem;
   border-radius: 9999px;
   border-color: rgb(255 255 255 / 0.18);
-  background: rgb(255 255 255 / 0);
+  background: rgb(255 255 255 / 1.0);
   backdrop-filter: blur(5px);
 }
 
