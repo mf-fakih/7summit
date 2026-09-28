@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>7Summit | Indonesia</title>
 
-  <link rel="shortcut icon" href="./assets/navigation/logo-icon.png" type="image/x-icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" href="./assets/navigation/logo-icon.png" />
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Unbounded:wght@700;900&display=swap"
     rel="stylesheet" />
@@ -23,7 +21,7 @@
   <div id="loader">
     <!-- Pemandangan gunung: jalur tergambar sesuai progres,
          titik pendaki naik, bendera muncul di puncak -->
-    <div class="loader-scene" aria-hidden="true">
+    <div class="loader-scene">
       <svg viewBox="0 0 240 120" width="240" height="120">
         <!-- Pegunungan di belakang -->
         <path class="loader-range" d="M0 120 L40 78 L70 96 L100 70 L110 120 Z" />
@@ -60,15 +58,15 @@
   <!-- ========== NAVBAR ==========
        Tetap di atas menu, tombolnya dipakai untuk buka sekaligus tutup -->
   <header id="navbar" class="fixed inset-x-0 top-0 z-50 h-24">
-    <nav class="mx-auto flex h-full max-w-[1440px] items-center justify-between px-6 md:px-36" aria-label="Navigasi utama">
-      <a href="#home" aria-label="7Summit, ke beranda">
+    <nav class="mx-auto flex h-full max-w-[1440px] items-center justify-between px-6 md:px-36">
+      <a href="#home">
         <img src="./assets/navigation/logo-icon.png" alt="" class="h-12 w-12 md:h-16 md:w-16" />
       </a>
 
       <img src="./assets/navigation/logo-wordmark.png" alt="7summit" class="absolute left-1/2 h-6 -translate-x-1/2 md:h-8" />
 
       <!-- Tombol menu: dua garis yang miring satu per satu jadi X -->
-      <button id="menu-toggle" class="relative h-11 w-11 cursor-pointer" aria-label="Buka menu" aria-expanded="false" aria-controls="menu">
+      <button id="menu-toggle" class="relative h-11 w-11 cursor-pointer" aria-expanded="false">
         <span class="bar"></span>
         <span class="bar"></span>
       </button>
@@ -77,8 +75,7 @@
 
   <!-- ========== MENU FULLSCREEN ==========
        Latar blur, muncul dengan efek gelombang dari posisi tombol -->
-  <div id="menu" class="menu-panel fixed inset-0 z-40 bg-base/55 backdrop-blur-2xl" data-open="false" role="dialog"
-    aria-modal="true" aria-label="Menu navigasi">
+  <div id="menu" class="menu-panel fixed inset-0 z-40 bg-base/55 backdrop-blur-2xl" data-open="false">
     <div class="mx-auto flex h-full max-w-[1440px] flex-col px-6 pt-24 md:px-36">
 
       <div class="flex flex-1 flex-col justify-center gap-12 overflow-y-auto py-8 lg:flex-row lg:items-center lg:justify-between lg:gap-24">
@@ -92,7 +89,7 @@
 
         <!-- Kolom kanan: foto + kontak -->
         <div class="menu-aside w-full max-w-[344px] space-y-8">
-          <img src="./assets/navigation/menu-preview.jpg" alt="Carstensz Pyramid" class="h-60 w-full rounded-3xl object-cover" onerror="this.remove()" />
+          <img loading="lazy" src="./assets/navigation/menu-preview.webp" alt="Carstensz Pyramid" class="h-60 w-full rounded-3xl object-cover" />
 
           <div>
             <p class="label-small">Kontak</p>
@@ -119,14 +116,14 @@
          Tiga lapisan bertumpuk: foto langit, teks judul, foto gunung.
          Gunung ditulis paling akhir, jadi dia menutup bagian bawah judul. -->
     <section id="home" class="relative h-screen overflow-hidden">
-      <img src="./assets/hero-sky.jpg" alt="" class="hero-sky absolute inset-0 h-full w-full object-cover" />
+      <img src="./assets/hero-sky.webp" alt="" class="hero-sky absolute inset-0 h-full w-full object-cover" />
 
       <div class="intro absolute inset-x-0 top-[26%] px-6 md:px-36" style="--i:1; --y:-40px">
         <p class="text-2xl font-light text-white/90 md:text-5xl">Seven summit of</p>
         <h1 class="font-display text-[clamp(3rem,11vw,8rem)] font-black leading-none">INDONESIA</h1>
       </div>
 
-      <img src="./assets/hero-mountain.png" alt="Gunung Bromo" class="hero-mountain absolute inset-0 h-full w-full object-cover" />
+      <img src="./assets/hero-mountain.webp" alt="Gunung Bromo" class="hero-mountain absolute inset-0 h-full w-full object-cover" />
 
       <!-- Gradasi hitam supaya teks di bawah tetap terbaca -->
       <div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-b from-transparent to-base"></div>
@@ -150,7 +147,7 @@
       <div class="mt-14 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <!-- Foto + label -->
         <figure class="relative">
-          <img src="./assets/about.jpg" alt="Pegunungan Indonesia di atas awan"
+          <img loading="lazy" src="./assets/about.webp" alt="Pegunungan Indonesia di atas awan"
                class="aspect-4/3 w-full rounded-3xl object-cover" />
           <figcaption class="chip absolute bottom-6 left-6">Mountains in Indonesia</figcaption>
         </figure>
@@ -183,7 +180,7 @@
          digeser ke samping oleh expeditions.js. -->
     <section id="expeditions" class="relative h-[320vh]">
       <div class="sticky top-0 h-screen overflow-hidden">
-        <img src="./assets/expeditions-bg.jpg" alt="" class="blend absolute inset-0 h-full w-full object-cover" />
+        <img loading="lazy" src="./assets/expeditions-bg.webp" alt="" class="blend absolute inset-0 h-full w-full object-cover" />
         <div class="absolute inset-0 bg-linear-to-r from-base/90 via-base/50 to-base/10"></div>
 
         <div class="relative flex h-full flex-col justify-center gap-10 px-6 md:px-36 lg:flex-row lg:items-center lg:gap-16">
@@ -206,31 +203,31 @@
             <div class="overflow-hidden">
               <div id="cards" class="flex gap-6">
                 <article class="card">
-                  <img src="./assets/mountains/carstensz.jpg" alt="Gunung Carstensz Pyramid" />
+                  <img loading="lazy" src="./assets/mountains/carstensz.webp" alt="Gunung Carstensz Pyramid" />
                   <span>Papua</span><h3>Carstensz Pyramid</h3><p>4.884 mdpl</p>
                 </article>
                 <article class="card">
-                  <img src="./assets/mountains/kerinci.jpg" alt="Gunung Kerinci" />
+                  <img loading="lazy" src="./assets/mountains/kerinci.webp" alt="Gunung Kerinci" />
                   <span>Sumatra Barat &amp; Jambi</span><h3>Kerinci</h3><p>3.805 mdpl</p>
                 </article>
                 <article class="card">
-                  <img src="./assets/mountains/rinjani.jpg" alt="Gunung Rinjani" />
+                  <img loading="lazy" src="./assets/mountains/rinjani.webp" alt="Gunung Rinjani" />
                   <span>Nusa Tenggara Barat</span><h3>Rinjani</h3><p>3.726 mdpl</p>
                 </article>
                 <article class="card">
-                  <img src="./assets/mountains/semeru.jpg" alt="Gunung Semeru" />
+                  <img loading="lazy" src="./assets/mountains/semeru.webp" alt="Gunung Semeru" />
                   <span>Jawa Timur</span><h3>Semeru</h3><p>3.676 mdpl</p>
                 </article>
                 <article class="card">
-                  <img src="./assets/mountains/latimojong.jpg" alt="Gunung Latimojong" />
+                  <img loading="lazy" src="./assets/mountains/latimojong.webp" alt="Gunung Latimojong" />
                   <span>Sulawesi Selatan</span><h3>Latimojong</h3><p>3.478 mdpl</p>
                 </article>
                 <article class="card">
-                  <img src="./assets/mountains/binaiya.jpg" alt="Gunung Binaiya" />
+                  <img loading="lazy" src="./assets/mountains/binaiya.webp" alt="Gunung Binaiya" />
                   <span>Maluku</span><h3>Binaiya</h3><p>3.027 mdpl</p>
                 </article>
                 <article class="card">
-                  <img src="./assets/mountains/bukit-raya.jpg" alt="Gunung Bukit Raya" />
+                  <img loading="lazy" src="./assets/mountains/bukit-raya.webp" alt="Gunung Bukit Raya" />
                   <span>Kalimantan</span><h3>Bukit Raya</h3><p>2.278 mdpl</p>
                 </article>
               </div>
@@ -271,8 +268,8 @@
       <div class="absolute inset-x-0 bottom-12 flex items-center justify-between px-6 md:px-36">
         <div id="summit-dots" class="flex gap-2"></div>
         <div class="flex gap-4">
-          <button id="summit-prev" class="arrow-btn" aria-label="Puncak sebelumnya"><svg><use href="#i-right" /></svg></button>
-          <button id="summit-next" class="arrow-btn" aria-label="Puncak berikutnya"><svg><use href="#i-right" /></svg></button>
+          <button id="summit-prev" class="arrow-btn"><svg><use href="#i-right" /></svg></button>
+          <button id="summit-next" class="arrow-btn"><svg><use href="#i-right" /></svg></button>
         </div>
       </div>
     </section>
@@ -280,8 +277,8 @@
     <!-- ========== CONTACT ==========
          Kiri: judul besar + sosial media. Kanan: kartu form.
          Di layar kecil otomatis jadi satu kolom. -->
-    <section id="contact" class="relative overflow-hidden h-screen md:h-screen">
-      <img src="./assets/contact/contact-bg.jpg" alt="" class="blend absolute inset-0 h-full w-full object-cover h-screen" />
+    <section id="contact" class="relative overflow-hidden h-screen">
+      <img loading="lazy" src="./assets/contact/contact-bg.webp" alt="" class="blend absolute inset-0 h-full w-full object-cover h-screen" />
       <div class="absolute inset-0 bg-linear-120 from-base/80 from-30% to-transparent"></div>
 
       <div class="relative grid min-h-screen grid-cols-1 items-center gap-14 px-6 py-32 md:px-36 lg:grid-cols-2">
@@ -320,7 +317,7 @@
        Foto di atas (pudar atas-bawah), newsletter, tulisan SUMMIT besar,
        lalu baris hak cipta. -->
   <footer class="relative -mt-40 overflow-hidden">
-    <img src="./assets/footer/footer-bg.jpg" alt="" class="blend absolute inset-0 h-full w-full object-cover brightness-75 [--fade:25%] h-screen" />
+    <img loading="lazy" src="./assets/footer/footer-bg.webp" alt="" class="blend absolute inset-0 h-full w-full object-cover brightness-75 [--fade:25%] h-screen" />
 
     <div class="relative px-6 pt-72 pb-10 md:px-36">
       <!-- Newsletter: kiri logo, kanan form -->
@@ -343,7 +340,7 @@
         </form>
       </div>
 
-      <img src="./assets/footer/summit-text.png" alt="Summit" class="mx-auto mt-16 w-full max-w-[1236px] md:mt-52" />
+      <img loading="lazy" src="./assets/footer/summit-text.webp" alt="Summit" class="mx-auto mt-16 w-full max-w-[1236px] md:mt-52" />
 
       <!-- Baris paling bawah -->
       <div class="mt-4 flex flex-col gap-6 border-t border-white/15 pt-10 text-sm text-muted md:flex-row md:items-center md:justify-between">

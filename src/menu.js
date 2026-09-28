@@ -44,7 +44,6 @@ function setOpen(open) {
   if (typeof lenis !== "undefined" && lenis) open ? lenis.stop() : lenis.start();
 
   toggle.setAttribute("aria-expanded", open);
-  toggle.setAttribute("aria-label", open ? "Tutup menu" : "Buka menu");
   document.body.classList.toggle("menu-open", open);
 }
 
