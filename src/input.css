@@ -499,6 +499,207 @@ body.menu-open {
   translate: 0 -0.25rem;
 }
 
+/* ---- Judul halaman (About & Rute) ----
+   Versi pendek dari hero Home: foto latar + judul besar di kiri bawah */
+.page-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 75vh;
+  padding: 10rem 0 5rem;
+  overflow: hidden;
+}
+.page-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(to top, transparent, #000 35%);
+  mask-image: linear-gradient(to top, transparent, #000 35%);
+}
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 8vw, 6.5rem);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* Kartu info bernomor (Our Values, Sebelum Berangkat) */
+.info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 0.5px solid rgb(255 255 255 / 0.2);
+  border-radius: 1.5rem;
+  background: var(--color-surface);
+  padding: 2rem;
+  transition: border-color 200ms ease, transform 300ms ease;
+}
+.info-card:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-4px);
+}
+.info-card span {
+  color: var(--color-gold);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+.info-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.info-card p {
+  color: rgb(255 255 255 / 0.7);
+  font-size: 0.9375rem;
+}
+
+/* ---- Halaman Rute ---- */
+
+/* Tab pilihan gunung, yang aktif jadi gold */
+.route-tab {
+  border: 1px solid rgb(255 255 255 / 0.3);
+  border-radius: 9999px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.route-tab:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+.route-tab[aria-selected="true"] {
+  border-color: var(--color-gold);
+  background: var(--color-gold);
+  color: var(--color-base);
+}
+
+/* Statistik berisi teks (durasi, tingkat): huruf lebih kecil dari angka */
+.stat-text b {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.75;
+}
+
+/* Grafik ketinggian */
+.route-profile {
+  display: block;
+  width: 100%;
+  height: 7rem;
+  overflow: visible;
+}
+.route-profile-area {
+  fill: rgb(197 168 125 / 0.12);
+}
+.route-profile-line {
+  fill: none;
+  stroke: var(--color-gold);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke; /* garis tetap tipis walau SVG direntang */
+}
+/* Titik pos di atas grafik (pakai HTML supaya tetap bulat saat direntang) */
+.route-profile-dots span {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 50%;
+  background: var(--color-base);
+}
+.route-profile-dots span.is-camp {
+  background: var(--color-gold);
+}
+
+/* Catatan penting jalur */
+.route-note {
+  border-left: 2px solid var(--color-gold);
+  border-radius: 0 1rem 1rem 0;
+  background: rgb(197 168 125 / 0.08);
+  padding: 1rem 1.25rem;
+  color: rgb(255 255 255 / 0.8);
+  font-size: 0.875rem;
+}
+
+/* Urutan pos: garis vertikal + titik di setiap pos */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  border-left: 1px dashed rgb(255 255 255 / 0.25);
+  margin-left: 0.5rem;
+  padding-left: 2rem;
+}
+.timeline li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.timeline li::before {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  left: calc(-2rem - 6.5px);
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--color-gold);
+  border-radius: 50%;
+  background: var(--color-base);
+}
+.timeline li.is-camp::before {
+  background: var(--color-gold);
+}
+/* Puncak: titik lebih besar dengan cincin */
+.timeline li.is-summit::before {
+  top: 0.2rem;
+  left: calc(-2rem - 10.5px);
+  width: 20px;
+  height: 20px;
+  background: var(--color-gold);
+  box-shadow: 0 0 0 6px rgb(197 168 125 / 0.2);
+}
+.timeline h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+.timeline li.is-summit h3 {
+  color: var(--color-gold);
+}
+.timeline-mdpl {
+  color: var(--color-gold);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+.timeline-meta {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Animasi detail setiap kali gunung diganti */
+#route-detail.is-new {
+  animation: masuk 500ms ease both;
+}
+
 /* ============================================================
    4. TOMBOL MENU — dua garis. Saat diklik, garis 1 miring duluan,
    lalu garis 2 menyusul, jadi X. Saat ditutup urutannya dibalik.
@@ -839,6 +1040,7 @@ body.is-loaded .hero-sky {
     display: none;
   }
   .summit-card.is-new,
+  #route-detail.is-new,
   .scroll-btn {
     animation: none;
   }

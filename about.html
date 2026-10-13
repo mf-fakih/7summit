@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="id" class="scroll-pt-24">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | 7Summit Indonesia</title>
+
+  <link rel="icon" href="./assets/navigation/logo-icon.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Unbounded:wght@700;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./dist/output.css" />
+  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
+</head>
+
+<body class="bg-base font-body text-white antialiased">
+
+  <!-- Kumpulan ikon. Ditulis sekali di sini, dipakai berkali-kali
+       lewat <use href="#nama-ikon"> -->
+  <svg hidden>
+    <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 12h15m0 0-6-6m6 6-6 6" />
+    </symbol>
+    <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14m0 0-6-6m6 6 6-6" />
+    </symbol>
+  </svg>
+
+  <!-- ========== NAVBAR ========== -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 h-24">
+    <nav class="mx-auto flex h-full max-w-[1440px] items-center justify-between px-6 md:px-36">
+      <a href="index.html">
+        <img src="./assets/navigation/logo-icon.png" alt="" class="h-12 w-12 md:h-16 md:w-16" />
+      </a>
+
+      <img src="./assets/navigation/logo-wordmark.png" alt="7summit" class="absolute left-1/2 h-6 -translate-x-1/2 md:h-8" />
+
+      <button id="menu-toggle" class="relative h-11 w-11 cursor-pointer" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ========== MENU FULLSCREEN ========== -->
+  <div id="menu" class="menu-panel fixed inset-0 z-40 bg-base/55 backdrop-blur-2xl" data-open="false">
+    <div class="mx-auto flex h-full max-w-[1440px] flex-col px-6 pt-24 md:px-36">
+
+      <div class="flex flex-1 flex-col justify-center gap-12 overflow-y-auto py-8 lg:flex-row lg:items-center lg:justify-between lg:gap-24">
+        <ul>
+          <li style="--i:1"><a class="menu-link" href="index.html"><span>01</span>Home<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:2"><a class="menu-link" href="about.html" aria-current="page"><span>02</span>About<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:3"><a class="menu-link" href="rute.html"><span>03</span>Rute<svg><use href="#i-right" /></svg></a></li>
+        </ul>
+
+        <div class="menu-aside w-full max-w-[344px] space-y-8">
+          <img loading="lazy" src="./assets/navigation/menu-preview.webp" alt="Carstensz Pyramid" class="h-60 w-full rounded-3xl object-cover" />
+
+          <div>
+            <p class="label-small">Kontak</p>
+            <p class="text-white/80">hello@7summit.id</p>
+            <p class="text-white/80">+62 812 0000 7777</p>
+          </div>
+
+          <div>
+            <p class="label-small">Sosial Media</p>
+            <p class="text-white/80">Instagram · YouTube · TikTok</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-aside flex flex-col gap-2 border-t border-white/15 py-6 text-sm text-muted sm:flex-row sm:justify-between">
+        <p>© 2026 7Summit Indonesia</p>
+        <p>Seven Summits of Indonesia</p>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ========== JUDUL HALAMAN ========== -->
+    <section id="top" class="page-hero">
+      <img src="./assets/about.webp" alt="" class="page-hero-img" />
+      <div class="absolute inset-0 bg-linear-to-r from-base/85 via-base/50 to-base/20"></div>
+
+      <div class="relative px-6 md:px-36">
+        <p class="intro label-small" style="--i:1">02 — About</p>
+        <h1 class="intro page-title" style="--i:1">About<br />7Summit</h1>
+        <p class="intro mt-6 max-w-lg text-white/80 md:text-lg" style="--i:2">
+          Komunitas dan pemandu pendakian yang ingin membawa lebih banyak orang
+          berdiri di tujuh atap Indonesia, dengan aman.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== OUR STORY ==========
+         Dua kolom: foto di kiri, cerita + statistik di kanan.
+         Di layar kecil otomatis jadi satu kolom. -->
+    <section id="story" class="bg-base px-6 py-28 md:px-36">
+      <p class="label-small">Cerita Kami</p>
+      <h2 class="section-title">Our Story</h2>
+
+      <div class="mt-14 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <figure class="relative">
+          <img loading="lazy" src="./assets/mountains/rinjani.webp" alt="Pendaki di Gunung Rinjani"
+               class="aspect-4/3 w-full rounded-3xl object-cover" />
+          <figcaption class="chip absolute bottom-6 left-6">Mountains in Indonesia</figcaption>
+        </figure>
+
+        <div class="space-y-10">
+          <p class="max-w-prose text-lg leading-relaxed text-white/80">
+            7Summit Indonesia hadir untuk mengajak para pendaki mengenal dan menjelajahi
+            keindahan pegunungan Indonesia. Kami menghadirkan informasi dan pengalaman
+            pendakian yang aman, berkesan, serta mengutamakan kebersamaan dan kelestarian alam.
+          </p>
+
+          <div class="grid gap-6 sm:grid-cols-3">
+            <div class="stat"><b data-count="7">7</b><p>Puncak Tertinggi</p><span>Di 7 pulau besar Indonesia</span></div>
+            <div class="stat"><b data-count="50" data-suffix="+">50+</b><p>Ekspedisi Sukses</p><span>Pendakian &amp; trekking terpandu</span></div>
+            <div class="stat"><b data-count="10000" data-suffix="+" data-final="10K+">10.000+</b><p>Komunitas</p><span>Pendaki berbagi cerita</span></div>
+          </div>
+
+          <a href="rute.html" class="btn-outline">
+            Lihat Rute Pendakian
+            <svg><use href="#i-right" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== NILAI KAMI ==========
+         Tiga kartu prinsip. Tinggal tambah/kurangi <article> kalau perlu. -->
+    <section id="values" class="bg-base px-6 pb-28 md:px-36">
+      <p class="label-small">Yang Kami Pegang</p>
+      <h2 class="section-title">Our Values</h2>
+
+      <div class="mt-14 grid gap-6 md:grid-cols-3">
+        <article class="info-card">
+          <span>01</span>
+          <h3>Safety First</h3>
+          <p>Setiap ekspedisi didampingi pemandu bersertifikat, briefing jalur, dan rencana evakuasi yang jelas.</p>
+        </article>
+        <article class="info-card">
+          <span>02</span>
+          <h3>Leave No Trace</h3>
+          <p>Sampah dibawa turun, jalur tidak dirusak. Gunung harus tetap indah untuk pendaki berikutnya.</p>
+        </article>
+        <article class="info-card">
+          <span>03</span>
+          <h3>Bersama Warga</h3>
+          <p>Kami bekerja dengan porter, pemandu, dan basecamp lokal supaya pendakian ikut menghidupi desa sekitar.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ==========
+         Kiri: judul besar + sosial media. Kanan: kartu form.
+         Di layar kecil otomatis jadi satu kolom. -->
+    <section id="contact" class="relative overflow-hidden">
+      <img loading="lazy" src="./assets/contact/contact-bg.webp" alt="" class="blend absolute inset-0 h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-linear-120 from-base/80 from-30% to-transparent"></div>
+
+      <div class="relative grid min-h-screen grid-cols-1 items-center gap-14 px-6 py-32 md:px-36 lg:grid-cols-2">
+        <div class="space-y-8">
+          <h2 class="contact-title">Let's<br /><span class="ml-[0.2em]">get in</span><br /><span class="ml-[0.5em]">touch</span></h2>
+          <p class="max-w-md text-lg font-light md:text-xl">
+            Hubungi kami untuk pertanyaan, masukan, atau bantuan. Kami siap melayani Anda.
+          </p>
+
+          <ul class="flex flex-wrap gap-x-10 gap-y-4 text-sm">
+            <li><a href="#" class="social"><img src="./assets/contact/facebook.svg" alt="" />7summitindonesia</a></li>
+            <li><a href="#" class="social"><img src="./assets/contact/instagram.svg" alt="" />@7summitEXP</a></li>
+            <li><a href="#" class="social"><img src="./assets/contact/x.svg" alt="" />7summit</a></li>
+          </ul>
+        </div>
+
+        <form class="summit-card gap-6 bg-white/5 lg:justify-self-end">
+          <div class="space-y-3">
+            <p class="label-small">Contact</p>
+            <h3>Ready to<br />Reach the Top?</h3>
+            <p class="text-white/80">Tinggalkan pesan, tim kami akan menghubungimu untuk merencanakan pendakian.</p>
+          </div>
+
+          <input class="field" name="nama" placeholder="Nama lengkap" required />
+          <textarea class="field" name="pesan" rows="1" placeholder="Pesan" required></textarea>
+
+          <button class="btn-send" data-done="Pesan Terkirim ✓">Kirim Pesan</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="relative -mt-40 overflow-hidden">
+    <img loading="lazy" src="./assets/footer/footer-bg.webp" alt="" class="blend absolute inset-0 h-full w-full object-cover brightness-75 [--fade:25%] h-screen" />
+
+    <div class="relative px-6 pt-72 pb-10 md:px-36">
+      <div class="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-sm">
+          <p class="label-small">Newsletter</p>
+          <img src="./assets/footer/logo.svg" alt="7summit" class="-mt-4" />
+          <p class="text-sm">Jelajahi puncak-puncak Indonesia dan temukan keindahan alam Nusantara</p>
+        </div>
+
+        <form class="w-full max-w-[30rem] space-y-5">
+          <h2 class="flex justify-between gap-3 font-display text-sm font-bold whitespace-nowrap uppercase sm:text-[1.375rem]">
+            <span>Sign up</span><span>to our</span><span>newsletter</span>
+          </h2>
+          <div class="flex items-center rounded-full border border-white/60 bg-white/15 py-1.5 pr-1.5 pl-7 backdrop-blur-sm">
+            <input type="email" name="email" placeholder="Masukkan email kamu" required
+                   class="min-w-0 flex-1 bg-transparent outline-none placeholder:text-white/80" />
+            <button class="btn-primary" data-done="Terdaftar ✓">Langganan <svg><use href="#i-right" /></svg></button>
+          </div>
+        </form>
+      </div>
+
+      <img loading="lazy" src="./assets/footer/summit-text.webp" alt="Summit" class="mx-auto mt-16 w-full max-w-[1236px] md:mt-52" />
+
+      <div class="mt-4 flex flex-col gap-6 border-t border-white/15 pt-10 text-sm text-muted md:flex-row md:items-center md:justify-between">
+        <p>© 2026 7Summit Indonesia. All rights reserved.</p>
+        <p class="space-x-3">
+          <a href="#" class="hover:text-white">Kebijakan Privasi</a><span>·</span><a href="#" class="hover:text-white">Syarat &amp; Ketentuan</a>
+        </p>
+        <a href="#top" class="back-top">Back to top <svg><use href="#i-right" /></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./src/site.js"></script>
+  <script src="./src/menu.js"></script>
+</body>
+
+</html>

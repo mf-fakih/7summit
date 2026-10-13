@@ -17,7 +17,7 @@
 <body class="bg-base font-body text-white antialiased">
 
   <!-- ========== LAYAR PEMBUKA ==========
-       Muncul tiap halaman dimuat, lalu terangkat ke atas -->
+       Cuma ada di Home. Muncul tiap halaman ini dimuat, lalu terangkat ke atas -->
   <div id="loader">
     <!-- Pemandangan gunung: jalur tergambar sesuai progres,
          titik pendaki naik, bendera muncul di puncak -->
@@ -59,7 +59,7 @@
        Tetap di atas menu, tombolnya dipakai untuk buka sekaligus tutup -->
   <header id="navbar" class="fixed inset-x-0 top-0 z-50 h-24">
     <nav class="mx-auto flex h-full max-w-[1440px] items-center justify-between px-6 md:px-36">
-      <a href="#home">
+      <a href="index.html">
         <img src="./assets/navigation/logo-icon.png" alt="" class="h-12 w-12 md:h-16 md:w-16" />
       </a>
 
@@ -74,17 +74,16 @@
   </header>
 
   <!-- ========== MENU FULLSCREEN ==========
-       Latar blur, muncul dengan efek gelombang dari posisi tombol -->
+       Latar blur, muncul dengan efek gelombang dari posisi tombol.
+       aria-current="page" dipasang di halaman yang sedang dibuka. -->
   <div id="menu" class="menu-panel fixed inset-0 z-40 bg-base/55 backdrop-blur-2xl" data-open="false">
     <div class="mx-auto flex h-full max-w-[1440px] flex-col px-6 pt-24 md:px-36">
 
       <div class="flex flex-1 flex-col justify-center gap-12 overflow-y-auto py-8 lg:flex-row lg:items-center lg:justify-between lg:gap-24">
         <ul>
-          <li style="--i:1"><a class="menu-link" href="#home" aria-current="page"><span>01</span>Home<svg><use href="#i-right" /></svg></a></li>
-          <li style="--i:2"><a class="menu-link" href="#about"><span>02</span>About Us<svg><use href="#i-right" /></svg></a></li>
-          <li style="--i:3"><a class="menu-link" href="#expeditions"><span>03</span>Expeditions<svg><use href="#i-right" /></svg></a></li>
-          <li style="--i:4"><a class="menu-link" href="#summits"><span>04</span>7 Summits<svg><use href="#i-right" /></svg></a></li>
-          <li style="--i:5"><a class="menu-link" href="#contact"><span>05</span>Contact<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:1"><a class="menu-link" href="index.html" aria-current="page"><span>01</span>Home<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:2"><a class="menu-link" href="about.html"><span>02</span>About<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:3"><a class="menu-link" href="rute.html"><span>03</span>Rute<svg><use href="#i-right" /></svg></a></li>
         </ul>
 
         <!-- Kolom kanan: foto + kontak -->
@@ -115,7 +114,7 @@
     <!-- ========== HERO ==========
          Tiga lapisan bertumpuk: foto langit, teks judul, foto gunung.
          Gunung ditulis paling akhir, jadi dia menutup bagian bawah judul. -->
-    <section id="home" class="relative h-screen overflow-hidden">
+    <section id="top" class="relative h-screen overflow-hidden">
       <img src="./assets/hero-sky.webp" alt="" class="hero-sky absolute inset-0 h-full w-full object-cover" />
 
       <div class="intro absolute inset-x-0 top-[26%] px-6 md:px-36" style="--i:1; --y:-40px">
@@ -133,51 +132,15 @@
           Jelajahi tujuh puncak tertinggi di tujuh pulau besar Indonesia, dari Papua sampai Kalimantan.
         </p>
 
-        <a href="#about" class="scroll-btn">Scroll me</a>
-      </div>
-    </section>
-
-    <!-- ========== ABOUT US ==========
-         Dua kolom: foto di kiri, cerita + statistik di kanan.
-         Di layar kecil otomatis jadi satu kolom. -->
-    <section id="about" class="bg-base px-6 py-28 md:px-36">
-      <p class="label-small">02 — About Us</p>
-      <h2 class="section-title">Our Story</h2>
-
-      <div class="mt-14 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <!-- Foto + label -->
-        <figure class="relative">
-          <img loading="lazy" src="./assets/about.webp" alt="Pegunungan Indonesia di atas awan"
-               class="aspect-4/3 w-full rounded-3xl object-cover" />
-          <figcaption class="chip absolute bottom-6 left-6">Mountains in Indonesia</figcaption>
-        </figure>
-
-        <!-- Cerita, statistik, tombol -->
-        <div class="space-y-10">
-          <p class="max-w-prose text-lg leading-relaxed text-white/80">
-            7Summit Indonesia hadir untuk mengajak para pendaki mengenal dan menjelajahi
-            keindahan pegunungan Indonesia. Kami menghadirkan informasi dan pengalaman
-            pendakian yang aman, berkesan, serta mengutamakan kebersamaan dan kelestarian alam.
-          </p>
-
-          <div class="grid gap-6 sm:grid-cols-3">
-            <div class="stat"><b data-count="7">7</b><p>Puncak Tertinggi</p><span>Di 7 pulau besar Indonesia</span></div>
-            <div class="stat"><b data-count="50" data-suffix="+">50+</b><p>Ekspedisi Sukses</p><span>Pendakian &amp; trekking terpandu</span></div>
-            <div class="stat"><b data-count="10000" data-suffix="+" data-final="10K+">10.000+</b><p>Komunitas</p><span>Pendaki berbagi cerita</span></div>
-          </div>
-
-          <a href="#expeditions" class="btn-outline">
-            Read More
-            <svg><use href="#i-right" /></svg>
-          </a>
-        </div>
+        <a href="#expeditions" class="scroll-btn">Scroll me</a>
       </div>
     </section>
 
     <!-- ========== EXPEDITIONS ==========
          Section ini tingginya 320vh supaya ada "jatah scroll".
          Isinya sticky, jadi menempel di layar sementara kartunya
-         digeser ke samping oleh expeditions.js. -->
+         digeser ke samping oleh expeditions.js.
+         Tiap kartu adalah link ke rutenya di halaman Rute. -->
     <section id="expeditions" class="relative h-[320vh]">
       <div class="sticky top-0 h-screen overflow-hidden">
         <img loading="lazy" src="./assets/expeditions-bg.webp" alt="" class="blend absolute inset-0 h-full w-full object-cover" />
@@ -186,7 +149,7 @@
         <div class="relative flex h-full flex-col justify-center gap-10 px-6 md:px-36 lg:flex-row lg:items-center lg:gap-16">
           <!-- Kiri: judul -->
           <div class="max-w-xl space-y-6 lg:w-[44%] lg:shrink-0">
-            <p class="label-small">03 — Expeditions</p>
+            <p class="label-small">01 — Expeditions</p>
             <h2 class="section-title">See the<br />Mountains</h2>
             <p class="max-w-md text-white/80 md:text-lg">
               Temukan keindahan puncak-puncak tertinggi Indonesia, di mana setiap jalur
@@ -202,34 +165,34 @@
           <div class="min-w-0 flex-1">
             <div class="overflow-hidden">
               <div id="cards" class="flex gap-6">
-                <article class="card">
+                <a class="card" href="rute.html#carstensz">
                   <img loading="lazy" src="./assets/mountains/carstensz.webp" alt="Gunung Carstensz Pyramid" />
                   <span>Papua</span><h3>Carstensz Pyramid</h3><p>4.884 mdpl</p>
-                </article>
-                <article class="card">
+                </a>
+                <a class="card" href="rute.html#kerinci">
                   <img loading="lazy" src="./assets/mountains/kerinci.webp" alt="Gunung Kerinci" />
                   <span>Sumatra Barat &amp; Jambi</span><h3>Kerinci</h3><p>3.805 mdpl</p>
-                </article>
-                <article class="card">
+                </a>
+                <a class="card" href="rute.html#rinjani">
                   <img loading="lazy" src="./assets/mountains/rinjani.webp" alt="Gunung Rinjani" />
                   <span>Nusa Tenggara Barat</span><h3>Rinjani</h3><p>3.726 mdpl</p>
-                </article>
-                <article class="card">
+                </a>
+                <a class="card" href="rute.html#semeru">
                   <img loading="lazy" src="./assets/mountains/semeru.webp" alt="Gunung Semeru" />
                   <span>Jawa Timur</span><h3>Semeru</h3><p>3.676 mdpl</p>
-                </article>
-                <article class="card">
+                </a>
+                <a class="card" href="rute.html#latimojong">
                   <img loading="lazy" src="./assets/mountains/latimojong.webp" alt="Gunung Latimojong" />
                   <span>Sulawesi Selatan</span><h3>Latimojong</h3><p>3.478 mdpl</p>
-                </article>
-                <article class="card">
+                </a>
+                <a class="card" href="rute.html#binaiya">
                   <img loading="lazy" src="./assets/mountains/binaiya.webp" alt="Gunung Binaiya" />
                   <span>Maluku</span><h3>Binaiya</h3><p>3.027 mdpl</p>
-                </article>
-                <article class="card">
+                </a>
+                <a class="card" href="rute.html#bukit-raya">
                   <img loading="lazy" src="./assets/mountains/bukit-raya.webp" alt="Gunung Bukit Raya" />
                   <span>Kalimantan</span><h3>Bukit Raya</h3><p>2.278 mdpl</p>
-                </article>
+                </a>
               </div>
             </div>
 
@@ -255,12 +218,12 @@
           <h2 class="section-title">Summit<br /><span id="summit-ghost">Puncak Jaya</span></h2>
         </div>
 
-        <!-- Kanan: kartu detail -->
+        <!-- Kanan: kartu detail. Link-nya diarahkan ke rute gunung yang aktif -->
         <article class="summit-card">
           <h3 id="summit-name">Carstensz Pyramid</h3>
           <div id="summit-tags" class="flex flex-wrap gap-2"></div>
           <p id="summit-text" class="text-white/75"></p>
-          <a href="#contact" class="btn-outline">Detail Pendakian <svg><use href="#i-right" /></svg></a>
+          <a id="summit-link" href="rute.html" class="btn-outline">Lihat Rute <svg><use href="#i-right" /></svg></a>
         </article>
       </div>
 
@@ -274,41 +237,23 @@
       </div>
     </section>
 
-    <!-- ========== CONTACT ==========
-         Kiri: judul besar + sosial media. Kanan: kartu form.
-         Di layar kecil otomatis jadi satu kolom. -->
-    <section id="contact" class="relative overflow-hidden h-screen">
-      <img loading="lazy" src="./assets/contact/contact-bg.webp" alt="" class="blend absolute inset-0 h-full w-full object-cover h-screen" />
+    <!-- ========== AJAKAN ==========
+         Penutup Home: arahkan ke halaman Rute & About.
+         pb-56 supaya isinya tidak tertutup footer yang naik (-mt-40). -->
+    <section id="cta" class="relative overflow-hidden">
+      <img loading="lazy" src="./assets/contact/contact-bg.webp" alt="" class="blend absolute inset-0 h-full w-full object-cover" />
       <div class="absolute inset-0 bg-linear-120 from-base/80 from-30% to-transparent"></div>
 
-      <div class="relative grid min-h-screen grid-cols-1 items-center gap-14 px-6 py-32 md:px-36 lg:grid-cols-2">
-        <!-- Kiri: ajakan + sosial media -->
-        <div class="space-y-8">
-          <h2 class="contact-title">Let's<br /><span class="ml-[0.2em]">get in</span><br /><span class="ml-[0.5em]">touch</span></h2>
-          <p class="max-w-md text-lg font-light md:text-xl">
-            Hubungi kami untuk pertanyaan, masukan, atau bantuan. Kami siap melayani Anda.
-          </p>
-
-          <ul class="flex flex-wrap gap-x-10 gap-y-4 text-sm">
-            <li><a href="#" class="social"><img src="./assets/contact/facebook.svg" alt="" />7summitindonesia</a></li>
-            <li><a href="#" class="social"><img src="./assets/contact/instagram.svg" alt="" />@7summitEXP</a></li>
-            <li><a href="#" class="social"><img src="./assets/contact/x.svg" alt="" />7summit</a></li>
-          </ul>
+      <div class="relative space-y-8 px-6 pt-40 pb-56 md:px-36">
+        <p class="label-small">02 — Mulai Pendakian</p>
+        <h2 class="contact-title">Ready to<br /><span class="ml-[0.2em]">reach</span><br /><span class="ml-[0.5em]">the top?</span></h2>
+        <p class="max-w-md text-lg font-light md:text-xl">
+          Pelajari jalur, pos, dan estimasi waktu tiap gunung sebelum berangkat. Butuh bantuan merencanakan? Tim kami siap membantu.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="rute.html" class="btn-primary">Lihat Rute Pendakian <svg><use href="#i-right" /></svg></a>
+          <a href="about.html#contact" class="btn-outline">Hubungi Kami <svg><use href="#i-right" /></svg></a>
         </div>
-
-        <!-- Kanan: form (pakai gaya kartu yang sama dengan section Summits) -->
-        <form class="summit-card gap-6 bg-white/5 lg:justify-self-end">
-          <div class="space-y-3">
-            <p class="label-small">05 — Contact</p>
-            <h3>Ready to<br />Reach the Top?</h3>
-            <p class="text-white/80">Tinggalkan pesan, tim kami akan menghubungimu untuk merencanakan pendakian.</p>
-          </div>
-
-          <input class="field" name="nama" placeholder="Nama lengkap" required />
-          <textarea class="field" name="pesan" rows="1" placeholder="Pesan" required></textarea>
-
-          <button class="btn-send" data-done="Pesan Terkirim ✓">Kirim Pesan</button>
-        </form>
       </div>
     </section>
   </main>
@@ -348,7 +293,7 @@
         <p class="space-x-3">
           <a href="#" class="hover:text-white">Kebijakan Privasi</a><span>·</span><a href="#" class="hover:text-white">Syarat &amp; Ketentuan</a>
         </p>
-        <a href="#home" class="back-top">Back to top <svg><use href="#i-right" /></svg></a>
+        <a href="#top" class="back-top">Back to top <svg><use href="#i-right" /></svg></a>
       </div>
     </div>
   </footer>

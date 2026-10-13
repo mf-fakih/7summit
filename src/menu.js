@@ -49,29 +49,18 @@ function setOpen(open) {
 
 toggle.onclick = () => (isOpen() ? setOpen(false) : openMenu());
 
-// Klik link: menu tertutup, lalu halaman scroll ke section tujuan
-links.forEach((link) => (link.onclick = () => setOpen(false)));
+// Klik link halaman yang sedang dibuka: cukup tutup menu.
+// Link ke halaman lain dibiarkan pindah halaman seperti biasa.
+// (Menu yang aktif ditandai aria-current="page" langsung di HTML tiap halaman.)
+links.forEach((link) =>
+  (link.onclick = (e) => {
+    if (!link.hasAttribute("aria-current")) return;
+    e.preventDefault();
+    setOpen(false);
+  })
+);
 
 // Esc untuk menutup
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") setOpen(false);
 });
-
-// Tandai menu yang sedang dilihat saat halaman di-scroll.
-// Patokannya garis tipis di tengah layar, jadi section yang sangat
-// tinggi (misalnya Expeditions 320vh) tetap terdeteksi.
-const spy = new IntersectionObserver(
-  (entries) =>
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      links.forEach((link) =>
-        link.toggleAttribute(
-          "aria-current",
-          link.getAttribute("href") === `#${entry.target.id}`
-        )
-      );
-    }),
-  { rootMargin: "-50% 0px -50% 0px" }
-);
-
-document.querySelectorAll("main section[id]").forEach((s) => spy.observe(s));

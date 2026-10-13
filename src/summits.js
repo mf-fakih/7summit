@@ -1,10 +1,12 @@
 // ============================================================
 // Slider 7 Summits
 // Tinggal ubah daftar di bawah ini kalau mau ganti isi slide.
+// slug = id gunung di halaman Rute (rute.html#slug)
 // ============================================================
 
 const puncak = [
   {
+    slug: "carstensz",
     bayangan: "Puncak Jaya",
     nama: "Carstensz Pyramid",
     tag: ["Papua", "4.884 mdpl", "Sangat Sulit"],
@@ -13,6 +15,7 @@ const puncak = [
       "Carstensz Pyramid atau Puncak Jaya adalah gunung tertinggi di Indonesia dengan ketinggian sekitar 4.884 mdpl. Terletak di Papua, gunung ini terkenal dengan medan berbatu yang ekstrem dan menjadi salah satu tujuan pendakian paling menantang di Indonesia.",
   },
   {
+    slug: "rinjani",
     bayangan: "Rinjani",
     nama: "Gunung Rinjani",
     tag: ["Lombok", "3.726 mdpl", "Sulit"],
@@ -21,6 +24,7 @@ const puncak = [
       "Rinjani terkenal dengan keindahan Danau Segara Anak di tengah kalderanya. Jalur ikoniknya disebut Letter of Credit, jalur pasir dan kerikil labil yang sangat menguras fisik, di mana melangkah dua kali akan merosot sekali. Angin kencang di punggungan tipis menuju puncak juga menjadi tantangan berat.",
   },
   {
+    slug: "kerinci",
     bayangan: "Kerinci",
     nama: "Gunung Kerinci",
     tag: ["Sumatra Barat", "3.805 mdpl", "Sedang"],
@@ -29,6 +33,7 @@ const puncak = [
       "Kerinci adalah gunung berapi aktif tertinggi di Indonesia. Jalurnya didominasi hutan hujan tropis lebat berakar besar, lalu bebatuan dan pasir terjal menjelang Puncak Indrapura. Tantangan utamanya adalah kemiringan yang konstan tanpa bonus jalan datar, serta jalur sempit Terowongan Harimau.",
   },
   {
+    slug: "semeru",
     bayangan: "Semeru",
     nama: "Gunung Semeru",
     tag: ["Malang", "3.676 mdpl", "Sulit"],
@@ -37,6 +42,7 @@ const puncak = [
       "Gunung tertinggi di Pulau Jawa dengan ikon Danau Ranu Kumbolo. Bagian tersulitnya adalah Kalimati menuju Puncak Mahameru, berupa tebing pasir yang sangat curam dan gembur. Aktivitas kawah Jonggring Saloko yang kerap mengeluarkan abu panas menuntut kewaspadaan tinggi.",
   },
   {
+    slug: "bukit-raya",
     bayangan: "Bukit Raya",
     nama: "Gunung Bukit Raya",
     tag: ["Kalimantan", "2.278 mdpl", "Sangat Sulit"],
@@ -45,6 +51,7 @@ const puncak = [
       "Meski paling rendah di daftar Seven Summits, Bukit Raya sering dianggap paling berat ditaklukkan. Letaknya jauh di jantung hutan Borneo, jalurnya hutan hujan primer yang lembap dan penuh pacet, serta butuh waktu berhari-hari menembus vegetasi liar.",
   },
   {
+    slug: "latimojong",
     bayangan: "Latimojong",
     nama: "Gunung Latimojong",
     tag: ["Sulawesi", "3.478 mdpl", "Sedang"],
@@ -53,6 +60,7 @@ const puncak = [
       "Puncak tertingginya bernama Rantemario. Ciri khas pendakian ini adalah hutan lumut yang sangat lebat dan lembap karena curah hujan tinggi. Jalurnya panjang melewati tujuh pos dengan medan akar bersilang dan beberapa titik batuan yang harus dipanjat dengan bantuan tali.",
   },
   {
+    slug: "binaiya",
     bayangan: "Binaiya",
     nama: "Gunung Binaiya",
     tag: ["Maluku", "3.027 mdpl", "Sulit"],
@@ -92,6 +100,7 @@ function tampilkan(i) {
   document.getElementById("summit-ghost").textContent = p.bayangan;
   document.getElementById("summit-name").textContent = p.nama;
   document.getElementById("summit-text").textContent = p.cerita;
+  document.getElementById("summit-link").href = `rute.html#${p.slug}`;
   document.getElementById("summit-tags").innerHTML = p.tag
     .map((t) => `<span class="chip">${t}</span>`)
     .join("");

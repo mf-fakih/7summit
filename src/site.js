@@ -6,11 +6,16 @@
 
 const hematAnimasi = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// Layar pembuka cuma ada di Home. Halaman lain langsung tampil.
+const loader = document.getElementById("loader");
+
 // Saat refresh, browser biasanya mengembalikan posisi scroll terakhir.
 // Untuk halaman berloader, itu bikin kita mendarat di tengah section.
 // Jadi posisinya dipaksa kembali ke atas.
-history.scrollRestoration = "manual";
-scrollTo(0, 0);
+if (loader) {
+  history.scrollRestoration = "manual";
+  scrollTo(0, 0);
+}
 
 // ---------- 2. SMOOTH SCROLL ----------
 let lenis = null;
@@ -25,7 +30,7 @@ if (window.Lenis && !hematAnimasi) {
   })();
 
   // Semua link #anchor dibuat scroll halus lewat Lenis
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((link) => {
     link.addEventListener("click", (e) => {
       const tujuan = document.querySelector(link.getAttribute("href"));
       if (!tujuan) return;
@@ -39,17 +44,23 @@ if (window.Lenis && !hematAnimasi) {
 }
 
 // ---------- 1. LAYAR PEMBUKA ----------
-const loader = document.getElementById("loader");
 const angka = document.getElementById("loader-count");
-lenis?.stop(); // kunci scroll selama layar pembuka tampil
-
-// Pengaman: apa pun yang terjadi, loader wajib hilang setelah 5 detik
-setTimeout(selesai, 5000);
-
-// Progres digerakkan per frame (requestAnimationFrame) selama 2,2 detik,
-// jadi titik pendaki naik mulus tanpa patah-patah.
 const durasi = 2200;
 let mulai;
+
+if (loader) {
+  lenis?.stop(); // kunci scroll selama layar pembuka tampil
+
+  // Pengaman: apa pun yang terjadi, loader wajib hilang setelah 5 detik
+  setTimeout(selesai, 5000);
+
+  // Progres digerakkan per frame (requestAnimationFrame) selama 2,2 detik,
+  // jadi titik pendaki naik mulus tanpa patah-patah.
+  requestAnimationFrame(langkah);
+} else {
+  // Tanpa loader: tunggu satu frame dulu supaya animasi masuk (.intro) tetap jalan
+  requestAnimationFrame(() => requestAnimationFrame(selesai));
+}
 
 function langkah(waktu) {
   mulai ??= waktu;
@@ -64,7 +75,6 @@ function langkah(waktu) {
   setTimeout(() => loader.classList.add("is-summit"), 150); // bendera berkibar
   setTimeout(selesai, 900);
 }
-requestAnimationFrame(langkah);
 
 let sudahSelesai = false;
 

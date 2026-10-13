@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="id" class="scroll-pt-24">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rute Pendakian | 7Summit Indonesia</title>
+
+  <link rel="icon" href="./assets/navigation/logo-icon.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Unbounded:wght@700;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./dist/output.css" />
+  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
+</head>
+
+<body class="bg-base font-body text-white antialiased">
+
+  <!-- Kumpulan ikon. Ditulis sekali di sini, dipakai berkali-kali
+       lewat <use href="#nama-ikon"> -->
+  <svg hidden>
+    <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 12h15m0 0-6-6m6 6-6 6" />
+    </symbol>
+    <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14m0 0-6-6m6 6 6-6" />
+    </symbol>
+  </svg>
+
+  <!-- ========== NAVBAR ========== -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 h-24">
+    <nav class="mx-auto flex h-full max-w-[1440px] items-center justify-between px-6 md:px-36">
+      <a href="index.html">
+        <img src="./assets/navigation/logo-icon.png" alt="" class="h-12 w-12 md:h-16 md:w-16" />
+      </a>
+
+      <img src="./assets/navigation/logo-wordmark.png" alt="7summit" class="absolute left-1/2 h-6 -translate-x-1/2 md:h-8" />
+
+      <button id="menu-toggle" class="relative h-11 w-11 cursor-pointer" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ========== MENU FULLSCREEN ========== -->
+  <div id="menu" class="menu-panel fixed inset-0 z-40 bg-base/55 backdrop-blur-2xl" data-open="false">
+    <div class="mx-auto flex h-full max-w-[1440px] flex-col px-6 pt-24 md:px-36">
+
+      <div class="flex flex-1 flex-col justify-center gap-12 overflow-y-auto py-8 lg:flex-row lg:items-center lg:justify-between lg:gap-24">
+        <ul>
+          <li style="--i:1"><a class="menu-link" href="index.html"><span>01</span>Home<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:2"><a class="menu-link" href="about.html"><span>02</span>About<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:3"><a class="menu-link" href="rute.html" aria-current="page"><span>03</span>Rute<svg><use href="#i-right" /></svg></a></li>
+        </ul>
+
+        <div class="menu-aside w-full max-w-[344px] space-y-8">
+          <img loading="lazy" src="./assets/navigation/menu-preview.webp" alt="Carstensz Pyramid" class="h-60 w-full rounded-3xl object-cover" />
+
+          <div>
+            <p class="label-small">Kontak</p>
+            <p class="text-white/80">hello@7summit.id</p>
+            <p class="text-white/80">+62 812 0000 7777</p>
+          </div>
+
+          <div>
+            <p class="label-small">Sosial Media</p>
+            <p class="text-white/80">Instagram · YouTube · TikTok</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-aside flex flex-col gap-2 border-t border-white/15 py-6 text-sm text-muted sm:flex-row sm:justify-between">
+        <p>© 2026 7Summit Indonesia</p>
+        <p>Seven Summits of Indonesia</p>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ========== JUDUL HALAMAN ========== -->
+    <section id="top" class="page-hero">
+      <img src="./assets/summits/semeru.webp" alt="" class="page-hero-img" />
+      <div class="absolute inset-0 bg-linear-to-r from-base/85 via-base/50 to-base/20"></div>
+
+      <div class="relative px-6 md:px-36">
+        <p class="intro label-small" style="--i:1">03 — Rute</p>
+        <h1 class="intro page-title" style="--i:1">Jalur<br />Pendakian</h1>
+        <p class="intro mt-6 max-w-lg text-white/80 md:text-lg" style="--i:2">
+          Pos demi pos menuju tujuh puncak tertinggi Indonesia: ketinggian,
+          estimasi waktu, dan titik camp di setiap jalur.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== RUTE ==========
+         Tab gunung + detail jalur. Semua isinya diisi dari src/rute.js -->
+    <section id="rute" class="bg-base px-6 pb-28 md:px-36">
+      <p class="label-small">Pilih Gunung</p>
+      <div id="route-tabs" class="mt-4 mb-14 flex flex-wrap gap-3" role="tablist"></div>
+
+      <div id="route-detail"></div>
+    </section>
+
+    <!-- ========== SEBELUM BERANGKAT ==========
+         pb-56 supaya isinya tidak tertutup footer yang naik (-mt-40). -->
+    <section id="tips" class="bg-base px-6 pb-56 md:px-36">
+      <p class="label-small">Persiapan</p>
+      <h2 class="section-title">Sebelum<br />Berangkat</h2>
+
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="info-card">
+          <span>01</span>
+          <h3>Izin Pendakian</h3>
+          <p>Urus SIMAKSI atau booking online jauh hari. Kuota di gunung populer cepat habis.</p>
+        </article>
+        <article class="info-card">
+          <span>02</span>
+          <h3>Latihan Fisik</h3>
+          <p>Mulai jogging, naik tangga, dan latihan beban minimal 1 bulan sebelum hari H.</p>
+        </article>
+        <article class="info-card">
+          <span>03</span>
+          <h3>Perlengkapan</h3>
+          <p>Jaket hangat, headlamp, rain cover, sepatu trekking, dan P3K pribadi wajib dibawa.</p>
+        </article>
+        <article class="info-card">
+          <span>04</span>
+          <h3>Cek Status Jalur</h3>
+          <p>Status gunung bisa berubah kapan saja. Pantau info resmi taman nasional sebelum berangkat.</p>
+        </article>
+      </div>
+
+      <div class="mt-14 flex flex-wrap items-center gap-6">
+        <p class="max-w-md text-white/80">Butuh pemandu atau mau ikut open trip? Ngobrol dulu sama tim kami.</p>
+        <a href="about.html#contact" class="btn-primary">Hubungi Kami <svg><use href="#i-right" /></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="relative -mt-40 overflow-hidden">
+    <img loading="lazy" src="./assets/footer/footer-bg.webp" alt="" class="blend absolute inset-0 h-full w-full object-cover brightness-75 [--fade:25%] h-screen" />
+
+    <div class="relative px-6 pt-72 pb-10 md:px-36">
+      <div class="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-sm">
+          <p class="label-small">Newsletter</p>
+          <img src="./assets/footer/logo.svg" alt="7summit" class="-mt-4" />
+          <p class="text-sm">Jelajahi puncak-puncak Indonesia dan temukan keindahan alam Nusantara</p>
+        </div>
+
+        <form class="w-full max-w-[30rem] space-y-5">
+          <h2 class="flex justify-between gap-3 font-display text-sm font-bold whitespace-nowrap uppercase sm:text-[1.375rem]">
+            <span>Sign up</span><span>to our</span><span>newsletter</span>
+          </h2>
+          <div class="flex items-center rounded-full border border-white/60 bg-white/15 py-1.5 pr-1.5 pl-7 backdrop-blur-sm">
+            <input type="email" name="email" placeholder="Masukkan email kamu" required
+                   class="min-w-0 flex-1 bg-transparent outline-none placeholder:text-white/80" />
+            <button class="btn-primary" data-done="Terdaftar ✓">Langganan <svg><use href="#i-right" /></svg></button>
+          </div>
+        </form>
+      </div>
+
+      <img loading="lazy" src="./assets/footer/summit-text.webp" alt="Summit" class="mx-auto mt-16 w-full max-w-[1236px] md:mt-52" />
+
+      <div class="mt-4 flex flex-col gap-6 border-t border-white/15 pt-10 text-sm text-muted md:flex-row md:items-center md:justify-between">
+        <p>© 2026 7Summit Indonesia. All rights reserved.</p>
+        <p class="space-x-3">
+          <a href="#" class="hover:text-white">Kebijakan Privasi</a><span>·</span><a href="#" class="hover:text-white">Syarat &amp; Ketentuan</a>
+        </p>
+        <a href="#top" class="back-top">Back to top <svg><use href="#i-right" /></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./src/site.js"></script>
+  <script src="./src/menu.js"></script>
+  <script src="./src/rute.js"></script>
+</body>
+
+</html>
