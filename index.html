@@ -82,8 +82,9 @@
       <div class="flex flex-1 flex-col justify-center gap-12 overflow-y-auto py-8 lg:flex-row lg:items-center lg:justify-between lg:gap-24">
         <ul>
           <li style="--i:1"><a class="menu-link" href="index.html" aria-current="page"><span>01</span>Home<svg><use href="#i-right" /></svg></a></li>
-          <li style="--i:2"><a class="menu-link" href="about.html"><span>02</span>About<svg><use href="#i-right" /></svg></a></li>
-          <li style="--i:3"><a class="menu-link" href="rute.html"><span>03</span>Rute<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:2"><a class="menu-link" href="rute.html"><span>02</span>Rute<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:3"><a class="menu-link" href="about.html"><span>03</span>About Us<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:4"><a class="menu-link" href="contact.html"><span>04</span>Contact<svg><use href="#i-right" /></svg></a></li>
         </ul>
 
         <!-- Kolom kanan: foto + kontak -->
@@ -114,25 +115,30 @@
     <!-- ========== HERO ==========
          Tiga lapisan bertumpuk: foto langit, teks judul, foto gunung.
          Gunung ditulis paling akhir, jadi dia menutup bagian bawah judul. -->
-    <section id="top" class="relative h-screen overflow-hidden">
+    <section id="top" class="relative h-svh min-h-[560px] overflow-hidden">
       <img src="./assets/hero-sky.webp" alt="" class="hero-sky absolute inset-0 h-full w-full object-cover" />
 
-      <div class="intro absolute inset-x-0 top-[26%] px-6 md:px-36" style="--i:1; --y:-40px">
-        <p class="text-2xl font-light text-white/90 md:text-5xl">Seven summit of</p>
-        <h1 class="font-display text-[clamp(3rem,11vw,8rem)] font-black leading-none">INDONESIA</h1>
-      </div>
+      <!-- Satu <h1> utuh "Seven Summits of Indonesia", baris kecilnya cuma beda gaya -->
+      <h1 class="intro absolute inset-x-0 top-[26%] px-6 md:px-36" style="--i:1; --y:-40px">
+        <span class="block text-2xl font-light text-white/90 md:text-5xl">Seven Summits of</span>
+        <span class="block font-display text-[clamp(3rem,11vw,8rem)] font-black leading-none">INDONESIA</span>
+      </h1>
 
-      <img src="./assets/hero-mountain.webp" alt="Gunung Bromo" class="hero-mountain absolute inset-0 h-full w-full object-cover" />
+      <img src="./assets/hero-mountain.webp" alt="" class="hero-mountain absolute inset-0 h-full w-full object-cover" />
 
       <!-- Gradasi hitam supaya teks di bawah tetap terbaca -->
-      <div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-b from-transparent to-base"></div>
+      <div class="absolute inset-x-0 bottom-0 h-2/5 bg-linear-to-b from-transparent to-base"></div>
 
       <div class="intro absolute inset-x-0 bottom-16 flex flex-col gap-6 px-6 sm:flex-row sm:items-center sm:justify-between md:px-36" style="--i:3; --x:-40px; --y:0">
-        <p class="max-w-md text-sm text-white/70 md:text-white/70">
-          Jelajahi tujuh puncak tertinggi di tujuh pulau besar Indonesia, dari Papua sampai Kalimantan.
+        <p class="max-w-md text-sm text-white/70 md:text-white/80">
+          Jelajahi tujuh puncak tertinggi di tujuh pulau besar Indonesia, dari Sumatra sampai Papua.
         </p>
 
-        <a href="#expeditions" class="scroll-btn">Scroll me</a>
+        <!-- Aksi utama (ke Rute) + penanda scroll -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="rute.html" class="btn-primary">Lihat Rute Pendakian <svg><use href="#i-right" /></svg></a>
+          <a href="#expeditions" class="scroll-btn" aria-label="Scroll ke Expeditions">Scroll <svg><use href="#i-down" /></svg></a>
+        </div>
       </div>
     </section>
 
@@ -252,7 +258,7 @@
         </p>
         <div class="flex flex-wrap gap-4">
           <a href="rute.html" class="btn-primary">Lihat Rute Pendakian <svg><use href="#i-right" /></svg></a>
-          <a href="about.html#contact" class="btn-outline">Hubungi Kami <svg><use href="#i-right" /></svg></a>
+          <a href="contact.html" class="btn-outline">Hubungi Kami <svg><use href="#i-right" /></svg></a>
         </div>
       </div>
     </section>

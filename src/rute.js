@@ -1,15 +1,13 @@
 // ============================================================
 // Halaman Rute
-// Semua isi rute ada di daftar di bawah ini. Mau tambah pos,
-// ganti ketinggian, atau ubah catatan? Cukup edit datanya.
+// Semua isi rute ada di daftar di bawah ini (sumber: Figma 7Summit,
+// frame "Desktop - 3" s/d "Desktop - 9"). Mau tambah pos, ganti
+// ketinggian, atau ubah keterangan? Cukup edit datanya.
 //
-// slug   = id gunung, dipakai di link (rute.html#semeru)
-// pos    = urutan titik dari basecamp sampai puncak
-//   waktu = estimasi jalan dari pos sebelumnya
-//   camp  = true kalau biasa dipakai buat camp / bermalam
-//
-// Catatan: ketinggian & waktu masih perkiraan (draft),
-// cek ulang ke basecamp / taman nasional sebelum dipakai.
+// slug  = id gunung, dipakai di link (rute.html#semeru)
+// pos   = urutan titik dari basecamp sampai puncak
+//   label = keterangan singkat di bawah nama pos
+//   mdpl  = null kalau ketinggiannya belum diketahui (tampil "—")
 // ============================================================
 
 const rute = [
@@ -19,73 +17,64 @@ const rute = [
     wilayah: "Lumajang & Malang, Jawa Timur",
     jalur: "Jalur Ranu Pani",
     mdpl: 3676,
-    durasi: "3–4 hari",
-    jarak: "± 17 km sekali jalan",
+    durasi: "3-4 hari",
     level: "Sulit",
-    foto: "./assets/mountains/semeru.webp",
-    catatan:
-      "Pendakian ke Puncak Mahameru sering ditutup karena aktivitas kawah Jonggring Saloko. Selalu cek status jalur di TN Bromo Tengger Semeru sebelum berangkat.",
+    foto: "./assets/rute/semeru.webp",
     pos: [
-      { nama: "Basecamp Ranu Pani", mdpl: 2100, waktu: "Start", ket: "Registrasi online, cek kesehatan, dan briefing wajib dari petugas.", camp: true },
-      { nama: "Pos 1 · Landengan Dowo", mdpl: 2300, waktu: "± 1,5 jam", ket: "Jalan setapak landai di antara ladang dan hutan." },
-      { nama: "Pos 2 · Watu Rejeng", mdpl: 2350, waktu: "± 1 jam", ket: "Tebing batu besar di sisi jalur, ada shelter kecil." },
-      { nama: "Pos 3", mdpl: 2400, waktu: "± 1 jam", ket: "Tanjakan pendek, setelahnya Ranu Kumbolo mulai terlihat." },
-      { nama: "Ranu Kumbolo", mdpl: 2400, waktu: "± 45 menit", ket: "Danau ikonik. Spot camp favorit dan sumber air. Dilarang mandi atau mencuci di danau.", camp: true },
-      { nama: "Tanjakan Cinta & Oro-oro Ombo", mdpl: 2450, waktu: "± 45 menit", ket: "Tanjakan legendaris lalu sabana luas penuh bunga verbena saat musim tertentu." },
-      { nama: "Cemoro Kandang", mdpl: 2500, waktu: "± 45 menit", ket: "Hutan cemara, jalur mulai menanjak konstan." },
-      { nama: "Jambangan", mdpl: 2600, waktu: "± 1,5 jam", ket: "Padang terbuka, Mahameru terlihat jelas di depan." },
-      { nama: "Kalimati", mdpl: 2700, waktu: "± 45 menit", ket: "Camp terakhir sebelum summit. Air dari Sumber Mani (± 1 jam PP).", camp: true },
-      { nama: "Arcopodo", mdpl: 2900, waktu: "± 1,5 jam", ket: "Jalur sempit dan curam di punggungan. Hati-hati di malam hari." },
-      { nama: "Kelik (batas vegetasi)", mdpl: 3000, waktu: "± 30 menit", ket: "Titik terakhir pepohonan. Setelah ini pasir dan kerikil lepas." },
-      { nama: "Puncak Mahameru", mdpl: 3676, waktu: "± 4 jam", ket: "Summit attack mulai tengah malam. Wajib turun sebelum pukul 10.00 karena arah angin membawa gas beracun." },
+      { nama: "Basecamp Ranu Pani", mdpl: 2100, label: "Start · Registrasi", ket: "Booking online lewat bromotenggersemeru.id, cek kesehatan, dan briefing wajib dari petugas TNBTS." },
+      { nama: "Pos 1 Landengan Dowo", mdpl: 2266, label: "Pos 1 · Hutan cemara", ket: "3 km dari Ranu Pani, sekitar 60 menit. Jalur didominasi cemara gunung." },
+      { nama: "Pos 2 Watu Rejeng", mdpl: 2390, label: "Pos 2 · Sumber air", ket: "Ada pondok kecil peristirahatan dan sumber air di bawah jembatan." },
+      { nama: "Pos 4 Ranu Kumbolo", mdpl: 2451, label: "Pos 4 · Viewpoint", ket: "Di bagian atas danau. Dari sini bentang Ranu Kumbolo terlihat utuh." },
+      { nama: "Ranu Kumbolo", mdpl: 2400, label: "Camp · Sumber air", ket: "Danau 14 ha. Sejak Mei 2025 TNBTS menetapkan titik ini sebagai batas akhir pendakian." },
+      { nama: "Cemoro Kandang", mdpl: 2500, label: "Shelter", ket: "Dicapai setelah Tanjakan Cinta dan padang lavender Oro-Oro Ombo." },
+      { nama: "Jambangan", mdpl: 2600, label: "Viewpoint", ket: "Titik pertama puncak Mahameru terlihat utuh dari jalur." },
+      { nama: "Kalimati", mdpl: 2700, label: "Camp terakhir", ket: "Sumber Mani sekitar 1 km ke arah barat. Batas akhir pendakian menurut PVMBG." },
+      { nama: "Arcopodo", mdpl: 2900, label: "Batas vegetasi", ket: "Jalur pasir dan kerikil labil dimulai dari sini." },
+      { nama: "Puncak Mahameru", mdpl: 3676, label: "Puncak", ket: "Kawah Jonggring Saloko. Turun sebelum pukul 10 pagi karena arah angin gas beracun berubah." },
     ],
   },
   {
     slug: "rinjani",
     nama: "Gunung Rinjani",
-    wilayah: "Lombok, Nusa Tenggara Barat",
+    wilayah: "Lombok Timur, Nusa Tenggara Barat",
     jalur: "Jalur Sembalun",
     mdpl: 3726,
-    durasi: "3–4 hari",
-    jarak: "± 15 km sekali jalan",
+    durasi: "3-4 hari",
     level: "Sulit",
-    foto: "./assets/mountains/rinjani.webp",
-    catatan:
-      "Booking wajib lewat aplikasi eRinjani. Jalur ditutup saat musim hujan (biasanya Januari–Maret).",
+    foto: "./assets/rute/rinjani.webp",
     pos: [
-      { nama: "Basecamp Sembalun", mdpl: 1156, waktu: "Start", ket: "Registrasi di kantor TN Gunung Rinjani, Sembalun Lawang.", camp: true },
-      { nama: "Pos 1 · Pemantauan", mdpl: 1300, waktu: "± 2 jam", ket: "Sabana terbuka dan panas, bawa pelindung kepala." },
-      { nama: "Pos 2 · Tengengean", mdpl: 1500, waktu: "± 1 jam", ket: "Ada jembatan dan sumber air musiman." },
-      { nama: "Pos 3 · Padabalong", mdpl: 1800, waktu: "± 1,5 jam", ket: "Tempat istirahat sebelum Bukit Penyesalan." },
-      { nama: "Bukit Penyesalan", mdpl: 2300, waktu: "± 2,5 jam", ket: "Rangkaian bukit menanjak yang seperti tidak ada habisnya." },
-      { nama: "Plawangan Sembalun", mdpl: 2639, waktu: "± 1,5 jam", ket: "Camp di bibir kaldera dengan view Segara Anak.", camp: true },
-      { nama: "Letter E", mdpl: 3300, waktu: "± 2,5 jam", ket: "Jalur pasir dan kerikil labil, naik dua langkah merosot satu." },
-      { nama: "Puncak Rinjani", mdpl: 3726, waktu: "± 1,5 jam", ket: "Angin kencang di punggungan tipis. Sunrise dengan view Bali dan Sumbawa." },
+      { nama: "Basecamp Sembalun", mdpl: 1156, label: "Start · Registrasi", ket: "Gerbang pendakian di Sembalun Lawang, sisi timur Rinjani." },
+      { nama: "Pos 1 Pemantauan", mdpl: 1300, label: "Pos 1 · Savana", ket: "Medan landai menyusuri padang savana. Sekitar 2-3 jam dari basecamp." },
+      { nama: "Pos 2 Tengengean", mdpl: 1500, label: "Pos 2 · Sumber air terakhir", ket: "Titik air terakhir sebelum Plawangan. Isi penuh semua botol di sini." },
+      { nama: "Pos 3 Padabalong", mdpl: 1800, label: "Pos 3 · Camp", ket: "Savana berganti hutan tropis. Banyak pendaki makan siang di sini." },
+      { nama: "Bukit Penyesalan", mdpl: 2300, label: "Tanjakan", ket: "Rangkaian punggungan beruntun. Tiap puncak bukit disambung bukit berikutnya." },
+      { nama: "Plawangan Sembalun", mdpl: 2639, label: "Camp · Summit camp", ket: "Camp terakhir sebelum summit attack. Pemandangan Segara Anak dan puncak Rinjani." },
+      { nama: "Puncak Rinjani", mdpl: 3726, label: "Puncak", ket: "4-5 jam dari Plawangan, berangkat dini hari. Medan pasir dan kerikil." },
+      { nama: "Danau Segara Anak", mdpl: 2000, label: "Danau kawah", ket: "Turun dari Plawangan. Ada sumber air panas Aik Kalak di dekatnya." },
+      { nama: "Plawangan Senaru", mdpl: 2461, label: "Camp", ket: "Bibir kaldera sisi barat, jalur turun menuju Desa Senaru." },
     ],
   },
   {
     slug: "kerinci",
     nama: "Gunung Kerinci",
-    wilayah: "Jambi & Sumatra Barat",
+    wilayah: "Kerinci, Jambi",
     jalur: "Jalur Kersik Tuo",
     mdpl: 3805,
-    durasi: "2–3 hari",
-    jarak: "± 12 km sekali jalan",
-    level: "Sedang",
-    foto: "./assets/mountains/kerinci.webp",
-    catatan:
-      "Gunung berapi aktif. Area puncak bisa ditutup saat status meningkat. Jalur di hutan licin saat hujan.",
+    durasi: "2-3 hari",
+    level: "Sulit",
+    foto: "./assets/rute/kerinci.webp",
     pos: [
-      { nama: "Basecamp Kersik Tuo", mdpl: 1500, waktu: "Start", ket: "Desa di kaki gunung dengan hamparan kebun teh.", camp: true },
-      { nama: "Pintu Rimba", mdpl: 1800, waktu: "± 30 menit (ojek)", ket: "Gerbang hutan Taman Nasional Kerinci Seblat." },
-      { nama: "Pos 1 · Bangku Panjang", mdpl: 1909, waktu: "± 30 menit", ket: "Hutan hujan tropis lebat, jalur masih bersahabat." },
-      { nama: "Pos 2 · Batu Lumut", mdpl: 2010, waktu: "± 30 menit", ket: "Batu besar berlumut, tempat istirahat singkat." },
-      { nama: "Pos 3 · Pondok Panorama", mdpl: 2225, waktu: "± 1 jam", ket: "Mulai banyak akar besar yang harus dipanjat." },
-      { nama: "Shelter 1", mdpl: 2505, waktu: "± 1,5 jam", ket: "Area datar untuk camp darurat." },
-      { nama: "Shelter 2", mdpl: 3002, waktu: "± 3 jam", ket: "Melewati Terowongan Harimau, jalur parit sempit dan curam.", camp: true },
-      { nama: "Shelter 3", mdpl: 3351, waktu: "± 1,5 jam", ket: "Camp terakhir di batas vegetasi, angin kencang.", camp: true },
-      { nama: "Tugu Yudha", mdpl: 3600, waktu: "± 1,5 jam", ket: "Tugu peringatan pendaki. Medan pasir dan batu." },
-      { nama: "Puncak Indrapura", mdpl: 3805, waktu: "± 1 jam", ket: "Bibir kawah aktif dengan view Danau Gunung Tujuh." },
+      { nama: "Basecamp Kersik Tuo", mdpl: 1400, label: "Start · Registrasi", ket: "Desa perkebunan teh. Dari sini jalan kaki melewati Tugu Macan." },
+      { nama: "Pos R10 TNKS", mdpl: 1611, label: "Pos jaga", ket: "Pos penjagaan Taman Nasional Kerinci Seblat, sekitar 45 menit dari desa." },
+      { nama: "Pintu Rimba", mdpl: 1682, label: "Batas hutan", ket: "Titik masuk hutan belantara. Kebun teh berakhir di sini." },
+      { nama: "Pos 1 Bangku Panjang", mdpl: 1890, label: "Pos 1 · Shelter", ket: "Tanah lapang dengan batu panjang. Jangan berhenti lama, area lintasan harimau." },
+      { nama: "Pos 2 Batu Lumut", mdpl: 2010, label: "Pos 2", ket: "Tanah datar tanpa shelter. Setelah ini jalur dipenuhi akar pohon." },
+      { nama: "Pos 3 Pondok Panorama", mdpl: 2225, label: "Pos 3", ket: "Akhir dari jalur berakar. Pendakian sesungguhnya dimulai setelah pos ini." },
+      { nama: "Shelter 1", mdpl: 2505, label: "Camp · Sumber air", ket: "Ada pondok tua dan sumber air. Aman untuk mendirikan tenda." },
+      { nama: "Shelter 2", mdpl: 3056, label: "Camp · Sumber air", ket: "Etape terpanjang di Kerinci. Ada lahan camp dan sumber air." },
+      { nama: "Shelter 3", mdpl: 3291, label: "Camp terakhir", ket: "Batas vegetasi, area terbuka paling luas di jalur. Camp terakhir sebelum puncak." },
+      { nama: "Tugu Yuda", mdpl: 3690, label: "Pos akhir", ket: "Medan batu cadas dan kerikil. Hampir tak ada pembatas antara jalur dan jurang." },
+      { nama: "Puncak Indrapura", mdpl: 3805, label: "Puncak", ket: "Gunung berapi aktif tertinggi di Asia Tenggara. Waspadai arah angin belerang." },
     ],
   },
   {
@@ -94,86 +83,84 @@ const rute = [
     wilayah: "Enrekang, Sulawesi Selatan",
     jalur: "Jalur Karangan",
     mdpl: 3478,
-    durasi: "4–5 hari",
-    jarak: "± 13 km sekali jalan",
-    level: "Sedang",
-    foto: "./assets/mountains/latimojong.webp",
-    catatan:
-      "Curah hujan tinggi hampir sepanjang tahun. Siapkan rain cover dan sepatu yang nyaman di medan becek.",
+    durasi: "3-4 hari",
+    level: "Sulit",
+    foto: "./assets/rute/latimojong.webp",
     pos: [
-      { nama: "Desa Karangan", mdpl: 1400, waktu: "Start", ket: "Desa terakhir, dicapai dengan mobil gardan ganda dari Baraka.", camp: true },
-      { nama: "Pos 1 · Buntu Kaciling", mdpl: 1800, waktu: "± 1,5 jam", ket: "Melewati kebun kopi warga." },
-      { nama: "Pos 2 · Sarung Pa'pak", mdpl: 1900, waktu: "± 1 jam", ket: "Ceruk batu besar dekat sungai dan air terjun.", camp: true },
-      { nama: "Pos 3 · Lantang Nase", mdpl: 2140, waktu: "± 1,5 jam", ket: "Tanjakan curam berakar." },
-      { nama: "Pos 4 · Buntu Lebu", mdpl: 2400, waktu: "± 1,5 jam", ket: "Mulai masuk hutan lumut." },
-      { nama: "Pos 5 · Soloh Tama", mdpl: 2650, waktu: "± 2 jam", ket: "Area camp luas dengan sumber air.", camp: true },
-      { nama: "Pos 6 · Kolong Buntu", mdpl: 3000, waktu: "± 2 jam", ket: "Beberapa titik batu yang dipanjat dengan tali." },
-      { nama: "Pos 7", mdpl: 3200, waktu: "± 1 jam", ket: "Camp terakhir sebelum puncak.", camp: true },
-      { nama: "Puncak Rantemario", mdpl: 3478, waktu: "± 1,5 jam", ket: "Titik tertinggi Sulawesi." },
+      { nama: "Basecamp Dusun Karangan", mdpl: 1415, label: "Start · Registrasi", ket: "Desa terakhir di kaki Latimojong, dilalui Sungai Salu Karangan. Lapor di basecamp sebelum naik." },
+      { nama: "Pos 1 Buntu Kaciling", mdpl: 1750, label: "Pos 1", ket: "Area terbuka sekitar 4 m². Jalur menanjak 50-70 derajat dari desa, sekitar 1,5 jam." },
+      { nama: "Pos 2 Goa Sarung Pakpak", mdpl: 1864, label: "Pos 2 · Goa", ket: "Ada goa yang bisa dipakai bermalam. Jalur melipir tepi jurang." },
+      { nama: "Pos 3 Lantang Nase", mdpl: 2020, label: "Pos 3 · Sumber air", ket: "Tempat istirahat populer karena ada sumber air." },
+      { nama: "Pos 4 Buntu Lebu", mdpl: 2250, label: "Pos 4", ket: "Jalur dari Pos 3 bermiring 60-70 derajat dengan sedikit bagian datar." },
+      { nama: "Pos 5 Soloh Tama", mdpl: 2600, label: "Pos 5 · Camp luas", ket: "Dataran luas di sisi punggungan. Area camp terbaik di jalur ini." },
+      { nama: "Pos 6 Buntu Latimojong", mdpl: 2835, label: "Pos 6", ket: "Jajaran tujuh puncak Latimojong mulai terlihat dari sini." },
+      { nama: "Pos 7 Kolong Buntu", mdpl: 3200, label: "Pos 7 · Terbuka", ket: "Tanah datar terbuka tanpa pohon. Pendakian sebenarnya dimulai dari sini." },
+      { nama: "Danau Kecil", mdpl: 3260, label: "Sumber air", ket: "Genangan kecil di punggungan menuju puncak." },
+      { nama: "Puncak Rantemario", mdpl: 3478, label: "Puncak", ket: "Titik tertinggi Sulawesi. Ditandai balok di atas batu bertuliskan Rante Mario 3478 MDPL." },
     ],
   },
   {
     slug: "binaiya",
     nama: "Gunung Binaiya",
-    wilayah: "Pulau Seram, Maluku",
+    wilayah: "Pulau Seram, Maluku Tengah",
     jalur: "Jalur Piliana",
     mdpl: 3027,
-    durasi: "6–8 hari",
-    jarak: "± 40 km sekali jalan",
-    level: "Sulit",
-    foto: "./assets/mountains/binaiya.webp",
-    catatan:
-      "Logistik harus dibawa penuh dari bawah. Wajib izin Balai TN Manusela dan ditemani pemandu dari Desa Piliana.",
+    durasi: "5-6 hari",
+    level: "Sangat Sulit",
+    foto: "./assets/rute/binaiya.webp",
     pos: [
-      { nama: "Tehoru (pesisir)", mdpl: 0, waktu: "Start", ket: "Titik awal dari tepi pantai selatan Seram." },
-      { nama: "Desa Piliana", mdpl: 700, waktu: "± 3 jam", ket: "Lapor ke kepala desa dan sewa pemandu lokal.", camp: true },
-      { nama: "Yamitala", mdpl: 1200, waktu: "± 5 jam", ket: "Hutan hujan tropis, lintasan sungai.", camp: true },
-      { nama: "Waepuku", mdpl: 1600, waktu: "± 5 jam", ket: "Camp di dekat aliran sungai.", camp: true },
-      { nama: "Aimoto", mdpl: 2200, waktu: "± 5 jam", ket: "Medan menanjak panjang, mulai hutan lumut." },
-      { nama: "Isilali", mdpl: 2500, waktu: "± 3 jam", ket: "Camp terakhir sebelum puncak.", camp: true },
-      { nama: "Puncak Binaiya", mdpl: 3027, waktu: "± 4 jam", ket: "Batuan karst tajam menjelang puncak, pakai sarung tangan." },
+      { nama: "Desa Piliana", mdpl: 430, label: "Start · Upacara adat", ket: "Menginap di rumah kepala desa. Ada upacara adat sebelum berangkat. SIMAKSI diurus di Masohi." },
+      { nama: "Pos 1 Yamitala", mdpl: 524, label: "Pos 1 · Shelter", ket: "2-3 jam dari Piliana lewat perkebunan dan beberapa penyeberangan sungai. Ada air terjun kecil." },
+      { nama: "Pos 2 Aimoto", mdpl: 1160, label: "Pos 2 · Sumber air terakhir", ket: "Tiga pondok dan aliran sungai kecil. Sumber air andal terakhir di jalur." },
+      { nama: "Pos 3 Highcamp", mdpl: 1920, label: "Pos 3 · Air kubangan", ket: "Tidak ada sungai lagi. Air ditampung di kubangan tanah beralas plastik." },
+      { nama: "Pos 4 Isiali", mdpl: 2150, label: "Pos 4 · Camp", ket: "Dua pondok dan sistem penampung air. Camp paling nyaman di jalur." },
+      { nama: "Puncak Bintang", mdpl: 2640, label: "Punggungan", ket: "Punggungan terbuka di atas hutan tropis sebelum turun ke Nasapeha." },
+      { nama: "Pos 5 Nasapeha", mdpl: 2580, label: "Pos 5", ket: "Belum ada shelter permanen. Hanya titik istirahat dan makan siang." },
+      { nama: "Pos 6 Waifuku", mdpl: 2970, label: "Camp terakhir", ket: "Lanskap palem dan batu hitam, terlindung angin. Ada kolam air yang bisa dipakai." },
+      { nama: "Puncak Binaiya", mdpl: 3027, label: "Puncak bertanda", ket: "Puncak Waifuku, lokasi semua papan nama Binaiya. Tujuan hampir semua pendaki." },
+      { nama: "Puncak Siale", mdpl: 3030, label: "Puncak sejati", ket: "Titik tertinggi Seram, 2 km ke barat laut. Umumnya tertutup untuk pendaki karena aturan konservasi." },
     ],
   },
   {
     slug: "bukit-raya",
     nama: "Gunung Bukit Raya",
-    wilayah: "Kalimantan Tengah & Barat",
-    jalur: "Jalur Tumbang Habangoi",
+    wilayah: "Serawai, Kalimantan Barat",
+    jalur: "Jalur Rantau Malam",
     mdpl: 2278,
-    durasi: "7–9 hari",
-    jarak: "± 35 km sekali jalan",
-    level: "Sangat Sulit",
-    foto: "./assets/mountains/bukit-raya.webp",
-    catatan:
-      "Akses ke desa awal butuh perjalanan darat dan sungai yang panjang. Siapkan anti-pacet dan obat-obatan pribadi.",
+    durasi: "5-7 hari",
+    level: "Sulit",
+    foto: "./assets/rute/bukit-raya.webp",
     pos: [
-      { nama: "Desa Tumbang Habangoi", mdpl: 200, waktu: "Start", ket: "Desa adat Dayak, titik awal pendakian.", camp: true },
-      { nama: "Pos 1 · Hulu Habangoi", mdpl: 400, waktu: "± 6 jam", ket: "Menyusuri sungai dan hutan primer.", camp: true },
-      { nama: "Pos 4", mdpl: 800, waktu: "± 1 hari", ket: "Hutan lembap penuh pacet.", camp: true },
-      { nama: "Pos 7", mdpl: 1300, waktu: "± 1 hari", ket: "Jalur mulai menanjak tajam.", camp: true },
-      { nama: "Pos 10 · Kaki Bukit Raya", mdpl: 1900, waktu: "± 1 hari", ket: "Camp terakhir di hutan lumut.", camp: true },
-      { nama: "Puncak Kakam", mdpl: 2278, waktu: "± 3 jam", ket: "Puncak tertinggi Bukit Raya, tertutup hutan lumut." },
+      { nama: "Desa Rantau Malam", mdpl: 124, label: "Start · Ritual adat", ket: "Desa Dayak Ot Danum, tanpa sinyal. Ada ritual Ngukuih Hajat sebelum pendakian." },
+      { nama: "Korong HP", mdpl: 434, label: "Titik awal trek", ket: "Dinamai begitu karena sinyal HP masih tertangkap di sini, tidak seperti di desa." },
+      { nama: "Pos 3 Hulu Menyanoi", mdpl: 569, label: "Pos 3 · Camp", ket: "Sekitar 2 jam dari Korong HP. Area camp cukup lapang." },
+      { nama: "Pos 4 Sungai Mangan", mdpl: null, label: "Pos 4 · Camp", ket: "Camp bermalam pertama bagi sebagian besar tim. Menyeberangi Sungai Mangan." },
+      { nama: "Pos 5 Hulu Rabang", mdpl: null, label: "Pos 5", ket: "Tingkat kesulitan jalur mulai naik setelah pos ini." },
+      { nama: "Pos 6 Hulu Jelundung", mdpl: 1381, label: "Pos 6 · Sempit", ket: "Tanah miring di tengah jalur, muat dua tenda. Setelah ini tanjakan curam tanpa bonus." },
+      { nama: "Pos 7 Linang", mdpl: 1527, label: "Pos 7 · Camp", ket: "Camp utama untuk summit attack. Ruang tenda terbatas." },
+      { nama: "Pos 8 Soa Tohotung", mdpl: 1580, label: "Pos 8 · Camp", ket: "Dekat Soa Badak. Alternatif camp terakhir sebelum puncak." },
+      { nama: "Puncak Kakam", mdpl: 2278, label: "Puncak", ket: "Titik tertinggi Kalimantan, masuk wilayah Kalimantan Tengah. Sumber air sulit di area puncak." },
     ],
   },
   {
     slug: "carstensz",
     nama: "Carstensz Pyramid",
-    wilayah: "Papua Tengah",
-    jalur: "Jalur Lembah Kuning",
+    wilayah: "Intan Jaya, Papua Tengah",
+    jalur: "Jalur Sugapa",
     mdpl: 4884,
-    durasi: "7–10 hari",
-    jarak: "Rock climbing ± 12 jam PP",
-    level: "Sangat Sulit",
-    foto: "./assets/mountains/carstensz.webp",
-    catatan:
-      "Butuh kemampuan panjat tebing (jumar, rappelling) dan izin khusus. Wajib lewat operator resmi.",
+    durasi: "12-16 hari",
+    level: "Teknis",
+    foto: "./assets/rute/carstensz.webp",
     pos: [
-      { nama: "Timika", mdpl: 30, waktu: "Start", ket: "Kota transit, pengurusan izin dan cek perlengkapan." },
-      { nama: "Base Camp Lembah Kuning", mdpl: 4200, waktu: "Helikopter", ket: "Aklimatisasi 1–2 hari di lembah danau-danau.", camp: true },
-      { nama: "Teras Bawah", mdpl: 4400, waktu: "± 2 jam", ket: "Mulai memanjat dinding batu kapur dengan fixed rope." },
-      { nama: "Tyrolean Traverse", mdpl: 4700, waktu: "± 3 jam", ket: "Menyeberang celah tebing dengan tali horizontal." },
-      { nama: "Summit Ridge", mdpl: 4800, waktu: "± 1,5 jam", ket: "Punggungan sempit dengan jurang di kedua sisi." },
-      { nama: "Puncak Carstensz", mdpl: 4884, waktu: "± 30 menit", ket: "Titik tertinggi Indonesia dan Oseania." },
+      { nama: "Sugapa", mdpl: 2100, label: "Start · Bandara perintis", ket: "Dicapai dengan pesawat kecil dari Timika atau Nabire. Titik awal jalur darat." },
+      { nama: "Kampung Ugimba", mdpl: null, label: "Desa terakhir", ket: "Desa terakhir di jalur. Porter dan pemandu direkrut dari sini." },
+      { nama: "Jambusiga Camp", mdpl: 2181, label: "Camp", ket: "Sekitar 8 jam dari Suanggama, jalur melipir lembah dengan sungai di sisi kiri." },
+      { nama: "Sungai Kemabu & Nabu", mdpl: null, label: "Penyeberangan", ket: "Dua sungai berarus deras. Curah hujan tinggi membuat debit berubah cepat." },
+      { nama: "New Zealand Pass", mdpl: null, label: "Punggungan", ket: "Rangkaian naik-turun tebing yang menghubungkan jalur darat ke lembah puncak." },
+      { nama: "Lembah Danau-Danau", mdpl: 4261, label: "Basecamp · Aklimatisasi", ket: "Puluhan danau gletser tepat di kaki piramida. Butiran es turun saat dini hari." },
+      { nama: "Yellow Valley", mdpl: 4300, label: "Basecamp summit", ket: "Titik mulai pemanjatan teknis. Bisa dicapai langsung dengan helikopter dari Timika." },
+      { nama: "Tyrolean Traverse", mdpl: null, label: "Crux", ket: "Celah sekitar 15 m diseberangi menggantung pada tali baja permanen." },
+      { nama: "Puncak Carstensz", mdpl: 4884, label: "Puncak", ket: "Titik tertinggi Indonesia dan Oseania. Summit attack mulai pukul 02.00-03.00." },
     ],
   },
 ];
@@ -183,12 +170,13 @@ const rute = [
 // ------------------------------------------------------------
 const tabs = document.getElementById("route-tabs");
 const detail = document.getElementById("route-detail");
-const formatAngka = (n) => n.toLocaleString("id-ID");
+const formatMdpl = (n) => (n == null ? "—" : `${n.toLocaleString("id-ID")} mdpl`);
 
 // Satu tombol tab untuk tiap gunung
 rute.forEach((r) => {
   const tab = document.createElement("button");
   tab.className = "route-tab";
+  tab.setAttribute("role", "tab");
   tab.textContent = r.nama.replace("Gunung ", "");
   tab.onclick = () => {
     history.replaceState(null, "", `#${r.slug}`);
@@ -197,41 +185,17 @@ rute.forEach((r) => {
   tabs.append(tab);
 });
 
-// Grafik ketinggian: tiap pos jadi satu titik, jaraknya dibuat rata
-function grafik(pos) {
-  const w = 300, h = 110;
-  const tinggi = pos.map((p) => p.mdpl);
-  const min = Math.min(...tinggi), max = Math.max(...tinggi);
-  const titik = pos.map((p, i) => [
-    (i / (pos.length - 1)) * w,
-    h - 8 - ((p.mdpl - min) / (max - min || 1)) * (h - 24),
-  ]);
-  const garis = titik.map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`).join(" ");
-
-  return `
-    <svg class="route-profile" viewBox="0 -6 ${w} ${h + 6}" preserveAspectRatio="none" aria-hidden="true">
-      <path class="route-profile-area" d="${garis} L${w} ${h} L0 ${h} Z" />
-      <path class="route-profile-line" d="${garis}" />
-    </svg>
-    <div class="route-profile-dots">
-      ${titik
-        .map(([x, y], i) =>
-          `<span class="${pos[i].camp ? "is-camp" : ""}" style="left:${(x / w) * 100}%; top:${((y + 6) / (h + 6)) * 100}%"></span>`)
-        .join("")}
-    </div>`;
-}
-
 function tampilkan(slug) {
   const r = rute.find((x) => x.slug === slug) || rute[0];
 
   [...tabs.children].forEach((t, i) => t.setAttribute("aria-selected", rute[i] === r));
 
   detail.innerHTML = `
-    <div class="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
-      <!-- Kiri: ringkasan jalur -->
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20">
+      <!-- Kiri: foto + ringkasan jalur (menempel saat timeline di-scroll) -->
       <div class="space-y-8 lg:sticky lg:top-28 lg:self-start">
         <figure class="relative">
-          <img src="${r.foto}" alt="${r.nama}" class="aspect-16/10 w-full rounded-3xl object-cover" />
+          <img src="${r.foto}" alt="${r.nama}" class="aspect-[606/389] w-full rounded-3xl object-cover" />
           <figcaption class="chip absolute bottom-5 left-5">${r.jalur}</figcaption>
         </figure>
 
@@ -240,32 +204,25 @@ function tampilkan(slug) {
           <h2 class="section-title">${r.nama}</h2>
         </div>
 
-        <div class="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-          <div class="stat"><b>${formatAngka(r.mdpl)}</b><p>mdpl</p></div>
-          <div class="stat"><b>${r.pos.length}</b><p>Titik</p></div>
-          <div class="stat stat-text"><b>${r.durasi}</b><p>Durasi</p></div>
-          <div class="stat stat-text"><b>${r.level}</b><p>Tingkat</p></div>
-        </div>
-
-        <div>
-          <p class="label-small">Profil Ketinggian · ${r.jarak}</p>
-          <div class="relative mt-4">${grafik(r.pos)}</div>
-        </div>
-
-        <p class="route-note">${r.catatan}</p>
+        <dl class="route-stats">
+          <div><dt>mdpl</dt><dd>${r.mdpl.toLocaleString("id-ID")}</dd></div>
+          <div><dt>Titik</dt><dd>${r.pos.length}</dd></div>
+          <div><dt>Durasi</dt><dd>${r.durasi}</dd></div>
+          <div><dt>Tingkat</dt><dd class="is-text">${r.level}</dd></div>
+        </dl>
       </div>
 
       <!-- Kanan: urutan pos -->
       <ol class="timeline">
         ${r.pos
           .map(
-            (p, i) => `
-          <li class="${p.camp ? "is-camp" : ""} ${i === r.pos.length - 1 ? "is-summit" : ""}">
+            (p) => `
+          <li>
             <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <h3>${p.nama}</h3>
-              <span class="timeline-mdpl">${formatAngka(p.mdpl)} mdpl</span>
+              <span class="timeline-mdpl">${formatMdpl(p.mdpl)}</span>
             </div>
-            <p class="timeline-meta">${p.waktu}${p.camp ? " · Area camp" : ""}</p>
+            <p class="timeline-meta">${p.label}</p>
             <p class="text-white/70">${p.ket}</p>
           </li>`
           )

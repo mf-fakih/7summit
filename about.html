@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About | 7Summit Indonesia</title>
+  <title>About Us | 7Summit Indonesia</title>
 
   <link rel="icon" href="./assets/navigation/logo-icon.png" />
   <link
@@ -25,6 +25,14 @@
     <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 5v14m0 0-6-6m6 6 6-6" />
     </symbol>
+  </svg>
+
+  <!-- Grain halus di seluruh halaman -->
+  <svg aria-hidden="true" class="pointer-events-none fixed inset-0 z-[60] h-full w-full opacity-[0.05] mix-blend-overlay">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#grain)" />
   </svg>
 
   <!-- ========== NAVBAR ========== -->
@@ -50,8 +58,9 @@
       <div class="flex flex-1 flex-col justify-center gap-12 overflow-y-auto py-8 lg:flex-row lg:items-center lg:justify-between lg:gap-24">
         <ul>
           <li style="--i:1"><a class="menu-link" href="index.html"><span>01</span>Home<svg><use href="#i-right" /></svg></a></li>
-          <li style="--i:2"><a class="menu-link" href="about.html" aria-current="page"><span>02</span>About<svg><use href="#i-right" /></svg></a></li>
-          <li style="--i:3"><a class="menu-link" href="rute.html"><span>03</span>Rute<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:2"><a class="menu-link" href="rute.html"><span>02</span>Rute<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:3"><a class="menu-link" href="about.html" aria-current="page"><span>03</span>About Us<svg><use href="#i-right" /></svg></a></li>
+          <li style="--i:4"><a class="menu-link" href="contact.html"><span>04</span>Contact<svg><use href="#i-right" /></svg></a></li>
         </ul>
 
         <div class="menu-aside w-full max-w-[344px] space-y-8">
@@ -78,117 +87,219 @@
   </div>
 
   <main>
-    <!-- ========== JUDUL HALAMAN ========== -->
-    <section id="top" class="page-hero">
-      <img src="./assets/about.webp" alt="" class="page-hero-img" />
-      <div class="absolute inset-0 bg-linear-to-r from-base/85 via-base/50 to-base/20"></div>
+    <!-- ========== 01 — HERO ==========
+         Judul naik dari balik "topeng" (.line), paragraf fade ke atas.
+         Animasinya jalan saat section dapat class .is-in dari src/about.js -->
+    <section id="top" data-reveal class="relative flex h-[clamp(620px,92svh,900px)] items-end overflow-hidden">
+      <img src="./assets/summits/rinjani.webp" alt="" class="absolute inset-0 h-full w-full object-cover" />
 
-      <div class="relative px-6 md:px-36">
-        <p class="intro label-small" style="--i:1">02 — About</p>
-        <h1 class="intro page-title" style="--i:1">About<br />7Summit</h1>
-        <p class="intro mt-6 max-w-lg text-white/80 md:text-lg" style="--i:2">
-          Komunitas dan pemandu pendakian yang ingin membawa lebih banyak orang
-          berdiri di tujuh atap Indonesia, dengan aman.
+      <div class="absolute inset-0"
+           style="background:
+             linear-gradient(90deg, rgba(0, 0, 0, 0.72) 10%, rgba(0, 0, 0, 0) 100%),
+             linear-gradient(190deg, rgba(0, 0, 0, 0.55) 0%, rgba(11, 11, 12, 0.95) 92%);"></div>
+
+      <div class="page-x relative z-10 w-full pb-[clamp(56px,9vw,120px)]">
+        <p class="overline fade mb-5">03 — About Us</p>
+
+        <h1 class="display text-[clamp(38px,6.6vw,96px)]">
+          <span class="line"><span>The People</span></span>
+          <span class="line"><span style="--d: 0.1s">Behind 7Summit</span></span>
+        </h1>
+
+        <p class="fade mt-8 max-w-[62ch] text-[clamp(16px,1.5vw,20px)] leading-[1.65] font-light text-white/75" style="--d: 0.28s">
+          Di balik setiap perjalanan, terdapat tim yang memiliki kecintaan mendalam terhadap
+          pegunungan Indonesia. Bersama-sama, kami menjelajahi, melestarikan, dan membagikan
+          keindahannya melalui petualangan yang bertanggung jawab.
         </p>
       </div>
     </section>
 
     <!-- ========== OUR STORY ==========
-         Dua kolom: foto di kiri, cerita + statistik di kanan.
-         Di layar kecil otomatis jadi satu kolom. -->
-    <section id="story" class="bg-base px-6 py-28 md:px-36">
-      <p class="label-small">Cerita Kami</p>
-      <h2 class="section-title">Our Story</h2>
+         Foto dengan bingkai gold yang bergeser di belakangnya,
+         cerita + statistik di kanan. -->
+    <section id="story" data-reveal class="page-x py-[clamp(80px,11vw,150px)]">
+      <p class="overline fade mb-4">Cerita Kami</p>
 
-      <div class="mt-14 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <figure class="relative">
-          <img loading="lazy" src="./assets/mountains/rinjani.webp" alt="Pendaki di Gunung Rinjani"
-               class="aspect-4/3 w-full rounded-3xl object-cover" />
-          <figcaption class="chip absolute bottom-6 left-6">Mountains in Indonesia</figcaption>
-        </figure>
+      <h2 class="display mb-[clamp(44px,6vw,80px)] text-[clamp(34px,5.4vw,72px)]">
+        <span class="line"><span>Our Story</span></span>
+      </h2>
 
-        <div class="space-y-10">
-          <p class="max-w-prose text-lg leading-relaxed text-white/80">
-            7Summit Indonesia hadir untuk mengajak para pendaki mengenal dan menjelajahi
-            keindahan pegunungan Indonesia. Kami menghadirkan informasi dan pengalaman
-            pendakian yang aman, berkesan, serta mengutamakan kebersamaan dan kelestarian alam.
+      <div class="flex flex-col items-center gap-[clamp(32px,5vw,64px)] lg:flex-row">
+        <div class="fade relative w-full shrink-0 lg:w-[46%]">
+          <span aria-hidden="true" class="absolute inset-0 translate-x-4 translate-y-4 rounded-3xl border border-gold/45"></span>
+          <img loading="lazy" src="./assets/about.webp" alt="Pegunungan Indonesia di atas awan"
+               class="relative aspect-[552/420] w-full rounded-3xl object-cover" />
+        </div>
+
+        <div class="flex-1">
+          <p class="fade text-[clamp(16px,1.5vw,20px)] leading-[1.65] font-light text-white/80" style="--d: 0.08s">
+            7Summit Indonesia hadir untuk mengajak para pendaki mengenal dan menjelajahi keindahan
+            pegunungan Indonesia. Kami menghadirkan informasi dan pengalaman pendakian yang aman,
+            berkesan, serta mengutamakan kebersamaan dan kelestarian alam.
           </p>
 
-          <div class="grid gap-6 sm:grid-cols-3">
+          <!-- Angka menghitung naik diurus src/site.js (data-count) -->
+          <div class="fade mt-10 grid gap-6 sm:grid-cols-3" style="--d: 0.16s">
             <div class="stat"><b data-count="7">7</b><p>Puncak Tertinggi</p><span>Di 7 pulau besar Indonesia</span></div>
             <div class="stat"><b data-count="50" data-suffix="+">50+</b><p>Ekspedisi Sukses</p><span>Pendakian &amp; trekking terpandu</span></div>
             <div class="stat"><b data-count="10000" data-suffix="+" data-final="10K+">10.000+</b><p>Komunitas</p><span>Pendaki berbagi cerita</span></div>
           </div>
 
-          <a href="rute.html" class="btn-outline">
-            Lihat Rute Pendakian
-            <svg><use href="#i-right" /></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== NILAI KAMI ==========
-         Tiga kartu prinsip. Tinggal tambah/kurangi <article> kalau perlu. -->
-    <section id="values" class="bg-base px-6 pb-28 md:px-36">
-      <p class="label-small">Yang Kami Pegang</p>
-      <h2 class="section-title">Our Values</h2>
-
-      <div class="mt-14 grid gap-6 md:grid-cols-3">
-        <article class="info-card">
-          <span>01</span>
-          <h3>Safety First</h3>
-          <p>Setiap ekspedisi didampingi pemandu bersertifikat, briefing jalur, dan rencana evakuasi yang jelas.</p>
-        </article>
-        <article class="info-card">
-          <span>02</span>
-          <h3>Leave No Trace</h3>
-          <p>Sampah dibawa turun, jalur tidak dirusak. Gunung harus tetap indah untuk pendaki berikutnya.</p>
-        </article>
-        <article class="info-card">
-          <span>03</span>
-          <h3>Bersama Warga</h3>
-          <p>Kami bekerja dengan porter, pemandu, dan basecamp lokal supaya pendakian ikut menghidupi desa sekitar.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ========== CONTACT ==========
-         Kiri: judul besar + sosial media. Kanan: kartu form.
-         Di layar kecil otomatis jadi satu kolom. -->
-    <section id="contact" class="relative overflow-hidden">
-      <img loading="lazy" src="./assets/contact/contact-bg.webp" alt="" class="blend absolute inset-0 h-full w-full object-cover" />
-      <div class="absolute inset-0 bg-linear-120 from-base/80 from-30% to-transparent"></div>
-
-      <div class="relative grid min-h-screen grid-cols-1 items-center gap-14 px-6 py-32 md:px-36 lg:grid-cols-2">
-        <div class="space-y-8">
-          <h2 class="contact-title">Let's<br /><span class="ml-[0.2em]">get in</span><br /><span class="ml-[0.5em]">touch</span></h2>
-          <p class="max-w-md text-lg font-light md:text-xl">
-            Hubungi kami untuk pertanyaan, masukan, atau bantuan. Kami siap melayani Anda.
-          </p>
-
-          <ul class="flex flex-wrap gap-x-10 gap-y-4 text-sm">
-            <li><a href="#" class="social"><img src="./assets/contact/facebook.svg" alt="" />7summitindonesia</a></li>
-            <li><a href="#" class="social"><img src="./assets/contact/instagram.svg" alt="" />@7summitEXP</a></li>
-            <li><a href="#" class="social"><img src="./assets/contact/x.svg" alt="" />7summit</a></li>
-          </ul>
-        </div>
-
-        <form class="summit-card gap-6 bg-white/5 lg:justify-self-end">
-          <div class="space-y-3">
-            <p class="label-small">Contact</p>
-            <h3>Ready to<br />Reach the Top?</h3>
-            <p class="text-white/80">Tinggalkan pesan, tim kami akan menghubungimu untuk merencanakan pendakian.</p>
+          <div class="fade mt-10" style="--d: 0.24s">
+            <a href="#crew" class="btn-outline">
+              Kenalan dengan Tim
+              <svg><use href="#i-right" /></svg>
+            </a>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <input class="field" name="nama" placeholder="Nama lengkap" required />
-          <textarea class="field" name="pesan" rows="1" placeholder="Pesan" required></textarea>
+    <!-- ========== MARQUEE ==========
+         Isinya ditulis dua kali supaya geserannya bisa berulang tanpa putus -->
+    <div class="overflow-hidden border-y border-white/12 py-[clamp(16px,2vw,26px)]">
+      <div class="marquee-track">
+        <div class="flex shrink-0 items-center gap-10 pr-10">
+          <span class="marquee-item">Tujuh Puncak</span><span class="text-gold">✦</span>
+          <span class="marquee-item">Satu Tim</span><span class="text-gold">✦</span>
+          <span class="marquee-item">Satu Nusantara</span><span class="text-gold">✦</span>
+        </div>
+        <div class="flex shrink-0 items-center gap-10 pr-10" aria-hidden="true">
+          <span class="marquee-item">Tujuh Puncak</span><span class="text-gold">✦</span>
+          <span class="marquee-item">Satu Tim</span><span class="text-gold">✦</span>
+          <span class="marquee-item">Satu Nusantara</span><span class="text-gold">✦</span>
+        </div>
+      </div>
+    </div>
 
-          <button class="btn-send" data-done="Pesan Terkirim ✓">Kirim Pesan</button>
-        </form>
+    <!-- ========== THE CREW ==========
+         Nama berupa outline, saat hover terisi gold dan
+         kartu foto mengikuti kursor (desktop saja). -->
+    <section id="crew" data-reveal class="page-x py-[clamp(80px,11vw,150px)]">
+      <div class="mb-[clamp(40px,6vw,76px)] flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p class="overline fade mb-4">Tim Kami</p>
+          <h2 class="display text-[clamp(34px,5.4vw,72px)]">
+            <span class="line"><span>Meet The Crew</span></span>
+          </h2>
+        </div>
+        <p class="fade max-w-[34ch] text-[15px] leading-relaxed text-muted" style="--d: 0.14s">
+          Tiga orang, satu obsesi yang sama: membuat gunung Indonesia terasa sedekat mungkin.
+        </p>
+      </div>
+
+      <ul data-roster class="border-b border-white/12">
+        <!-- ============ 01 ============ -->
+        <li class="roster-row" data-member="0">
+          <div class="roster-link">
+            <span class="w-9 shrink-0 text-[12px] tracking-[0.2em] text-gold md:w-14">01</span>
+
+            <!-- thumbnail khusus layar kecil -->
+            <span class="size-11 shrink-0 overflow-hidden rounded-full lg:hidden">
+              <img src="./assets/crew/fakhril.webp" alt="" loading="lazy" class="h-full w-full object-cover" style="object-position: 50% 42%" />
+            </span>
+
+            <span class="roster-name display">
+              <span class="ol">Fakhril</span>
+              <span class="fl" aria-hidden="true">Fakhril</span>
+            </span>
+
+            <span class="roster-meta ml-auto hidden text-right lg:block">
+              <span class="block text-[13px] font-semibold tracking-[0.05em] uppercase">Designer &amp; Full-Stack Dev</span>
+              <span class="mt-1 block text-[12px] tracking-[0.12em] text-gold uppercase">Carstensz · 4.884 m</span>
+            </span>
+            <span class="roster-meta ml-auto block text-right text-[11px] tracking-[0.1em] text-muted uppercase lg:hidden">
+              Designer &amp; Web Dev
+            </span>
+          </div>
+        </li>
+
+        <!-- ============ 02 ============ -->
+        <li class="roster-row" data-member="1">
+          <div class="roster-link">
+            <span class="w-9 shrink-0 text-[12px] tracking-[0.2em] text-gold md:w-14">02</span>
+
+            <span class="size-11 shrink-0 overflow-hidden rounded-full lg:hidden">
+              <img src="./assets/crew/ghaisan.webp" alt="" loading="lazy" class="h-full w-full object-cover" style="object-position: 50% 30%" />
+            </span>
+
+            <span class="roster-name display">
+              <span class="ol">Ghaisan</span>
+              <span class="fl" aria-hidden="true">Ghaisan</span>
+            </span>
+
+            <span class="roster-meta ml-auto hidden text-right lg:block">
+              <span class="block text-[13px] font-semibold tracking-[0.05em] uppercase">Creative &amp; Front-End</span>
+              <span class="mt-1 block text-[12px] tracking-[0.12em] text-gold uppercase">Kerinci · 3.805 m</span>
+            </span>
+            <span class="roster-meta ml-auto block text-right text-[11px] tracking-[0.1em] text-muted uppercase lg:hidden">
+              Creative &amp; Front-End
+            </span>
+          </div>
+        </li>
+
+        <!-- ============ 03 ============ -->
+        <li class="roster-row" data-member="2">
+          <div class="roster-link">
+            <span class="w-9 shrink-0 text-[12px] tracking-[0.2em] text-gold md:w-14">03</span>
+
+            <span class="size-11 shrink-0 overflow-hidden rounded-full lg:hidden">
+              <img src="./assets/crew/vittorio.webp" alt="" loading="lazy" class="h-full w-full object-cover" style="object-position: 50% 35%" />
+            </span>
+
+            <span class="roster-name display">
+              <span class="ol">Vittorio</span>
+              <span class="fl" aria-hidden="true">Vittorio</span>
+            </span>
+
+            <span class="roster-meta ml-auto hidden text-right lg:block">
+              <span class="block text-[13px] font-semibold tracking-[0.05em] uppercase">Web Developer &amp; Designer</span>
+              <span class="mt-1 block text-[12px] tracking-[0.12em] text-gold uppercase">Rinjani · 3.726 m</span>
+            </span>
+            <span class="roster-meta ml-auto block text-right text-[11px] tracking-[0.1em] text-muted uppercase lg:hidden">
+              Web Dev &amp; Designer
+            </span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ========== AJAKAN ==========
+         Penutup halaman: arahkan ke Contact (form ada di contact.html).
+         pb-56 supaya isinya tidak tertutup footer yang naik (-mt-40). -->
+    <section id="cta" data-reveal class="page-x pt-[clamp(40px,6vw,80px)] pb-56">
+      <div class="flex flex-col gap-10 border-t border-white/12 pt-[clamp(48px,7vw,96px)] lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p class="overline fade mb-4">Mulai Bersama Kami</p>
+          <h2 class="display text-[clamp(34px,5.4vw,72px)]">
+            <span class="line"><span>Siap Mendaki</span></span>
+            <span class="line"><span style="--d: 0.1s">Bareng Kami?</span></span>
+          </h2>
+        </div>
+        <div class="fade flex flex-wrap gap-4" style="--d: 0.2s">
+          <a href="contact.html" class="btn-primary">Hubungi Kami <svg><use href="#i-right" /></svg></a>
+          <a href="rute.html" class="btn-outline">Lihat Rute <svg><use href="#i-right" /></svg></a>
+        </div>
       </div>
     </section>
   </main>
+
+  <!-- Lapisan kartu foto yang mengikuti kursor di section Crew (desktop saja).
+       Foto ada di assets/crew. Kalau muka kepotong, geser object-position-nya
+       (angka kedua makin kecil = fokus makin ke atas). -->
+  <div data-roster-media class="pointer-events-none fixed inset-0 z-40 hidden lg:block">
+    <div data-roster-follow class="absolute top-0 left-0 will-change-transform">
+      <figure class="roster-card" data-card="0">
+        <img src="./assets/crew/fakhril.webp" alt="Foto Fakhril" class="h-full w-full object-cover" style="object-position: 50% 40%" />
+      </figure>
+      <figure class="roster-card" data-card="1">
+        <img src="./assets/crew/ghaisan.webp" alt="Foto Ghaisan" class="h-full w-full object-cover" style="object-position: 50% 30%" />
+      </figure>
+      <figure class="roster-card" data-card="2">
+        <img src="./assets/crew/vittorio.webp" alt="Foto Vittorio" class="h-full w-full object-cover" style="object-position: 50% 30%" />
+      </figure>
+    </div>
+  </div>
 
   <!-- ========== FOOTER ========== -->
   <footer class="relative -mt-40 overflow-hidden">
@@ -228,6 +339,7 @@
 
   <script src="./src/site.js"></script>
   <script src="./src/menu.js"></script>
+  <script src="./src/about.js"></script>
 </body>
 
 </html>

@@ -137,7 +137,8 @@ if (!hematAnimasi && "IntersectionObserver" in window) {
 // Belum ada server, jadi pesan cuma "pura-pura" terkirim:
 // halaman tidak dimuat ulang, form dikosongkan, tombol memberi tanda.
 // Teks tandanya diambil dari data-done di tombol.
-document.querySelectorAll("form").forEach((form) =>
+// Form kontak (contact.html) punya validasi sendiri di src/contact.js
+document.querySelectorAll("form:not([data-contact-form])").forEach((form) =>
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     form.reset();
