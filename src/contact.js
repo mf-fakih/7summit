@@ -1,36 +1,11 @@
 // ============================================================
 // Halaman Contact
-// 1. Status jam kerja (online / di luar jam kerja), patokan WIB
-// 2. Tombol "Salin" email
-// 3. Form: cek isian, tampilkan pesan error di bawah kolomnya,
+// 1. Tombol "Salin" email
+// 2. Form: cek isian, tampilkan pesan error di bawah kolomnya,
 //    lalu "kirim" (belum ada server, jadi cuma tampilan)
 // ============================================================
 
-// ---------- 1. STATUS JAM KERJA ----------
-// Senin–Sabtu 08.00–20.00 WIB. Dihitung pakai zona Asia/Jakarta,
-// jadi tetap benar walau pengunjung di luar WIB.
-(() => {
-  const status = document.querySelector("[data-status]");
-  if (!status) return;
-
-  const bagian = new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Jakarta",
-    weekday: "short",
-    hour: "numeric",
-    hourCycle: "h23",
-  }).formatToParts(new Date());
-  const hari = bagian.find((b) => b.type === "weekday").value;
-  const jam = Number(bagian.find((b) => b.type === "hour").value);
-
-  const online = hari !== "Sun" && jam >= 8 && jam < 20;
-  status.classList.toggle("is-online", online);
-  status.querySelector("[data-status-text]").textContent = online
-    ? "Tim sedang online · biasanya dibalas dalam 1 jam"
-    : "Di luar jam kerja · pesanmu dibalas besok pagi";
-  status.hidden = false;
-})();
-
-// ---------- 2. SALIN EMAIL ----------
+// ---------- 1. SALIN EMAIL ----------
 document.querySelectorAll("[data-copy]").forEach((tombol) =>
   tombol.addEventListener("click", async () => {
     try {
@@ -43,7 +18,7 @@ document.querySelectorAll("[data-copy]").forEach((tombol) =>
   })
 );
 
-// ---------- 3. FORM ----------
+// ---------- 2. FORM ----------
 (() => {
   const form = document.querySelector("[data-contact-form]");
   if (!form) return;

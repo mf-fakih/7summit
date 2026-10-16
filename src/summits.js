@@ -84,6 +84,7 @@ puncak.forEach((p, i) => {
 
   const dot = document.createElement("button");
   dot.className = "dot";
+  dot.setAttribute("aria-label", `Tampilkan ${p.nama}`);
   dot.onclick = () => tampilkan(i);
   dots.append(dot);
 });
